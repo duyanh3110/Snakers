@@ -13,6 +13,8 @@ import {
 
 import { Rating } from 'react-native-elements';
 
+import Modal from 'react-native-modalbox';
+
 import BurgerMenuData from '../data/burgerMenuData';
 
 class FlatListItem extends Component {
@@ -103,6 +105,17 @@ class FlatListItem extends Component {
 }
 
 export default class Burger extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isOpen: false,
+      isDisabled: false,
+      swipeToClose: true,
+      sliderValue: 0.3
+    };
+  }
+
   render() {
     let screenWidth = Dimensions.get('window').width;
 
@@ -150,7 +163,7 @@ export default class Burger extends Component {
         renderItem={({item, index}) => {
           return (
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('BurgerInfo')}
+              onPress={() => this.refs.modal1.open()}
             >
               <FlatListItem item={item} index={index} />
             </TouchableOpacity>
@@ -158,6 +171,20 @@ export default class Burger extends Component {
         }}
         />
 
+        <Modal
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: screenWidth,
+            height: 300,
+          }}
+          ref={'modal1'}
+          swipeToClose={this.state.swipeToClose}
+          onClosed={this.onClosed}
+          onOpened={this.onOpened}
+          onClosingState={this.onClosingState}>
+            <Text>Basic Modal</Text>
+        </Modal>
       </View>
     );
   }
