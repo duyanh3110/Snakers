@@ -5,12 +5,16 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 export default class HomePage extends Component {
+  menu = () => {
+    Actions.menu()
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <Text>This is a Home Page</Text>
         <Button
-          onPress={() => this.props.navigation.navigate('MenuPage')}
+          onPress={this.menu}
           title ="Go to Menu Page"
         />
       </View>
