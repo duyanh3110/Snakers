@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
-
+import * as firebase from 'firebase';
 import { Font } from 'expo';
 
-import { StackNavigator } from 'react-navigation';
+import Routes from './src/Routes';
 
-import HomePage from './Pages/HomePage';
-import MenuPage from './Pages/MenuPage';
+const config = {
+   apiKey: "AIzaSyBoS0ZYQ3QCFSFV74fJz0w_h8uoFH_BuZM",
+   authDomain: "snackers-9ff5b.firebaseapp.com",
+   databaseURL: "https://snackers-9ff5b.firebaseio.com",
+   projectId: "snackers-9ff5b",
+   storageBucket: "snackers-9ff5b.appspot.com",
+   messagingSenderId: "881940158467"
+ };
+ firebase.initializeApp(config);
 
 export default class App extends React.Component {
   state = {
@@ -34,18 +41,11 @@ export default class App extends React.Component {
   render() {
     return this.state.loaded ? (
       <View style={styles.container}>
-        <MenuNavigator />
+        <Routes />
       </View>
     ) : null;
   }
 }
-
-const MenuNavigator = StackNavigator({
-  HomePage: { screen: HomePage },
-  MenuPage: { screen: MenuPage },
-}, {
-  headerMode: 'none',
-});
 
 const styles = StyleSheet.create({
   container: {
