@@ -112,7 +112,8 @@ export default class Burger extends Component {
       isOpen: false,
       isDisabled: false,
       swipeToClose: true,
-      sliderValue: 0.3
+      sliderValue: 0.3,
+      backdropOpacity: 0.8,
     };
   }
 
@@ -163,7 +164,8 @@ export default class Burger extends Component {
         renderItem={({item, index}) => {
           return (
             <TouchableOpacity
-              onPress={() => this.refs.modal1.open()}
+              onLongPress={() => this.refs.modal1.open()}
+              onPress={() => this.props.navigation.navigate('BurgerInfo')}
             >
               <FlatListItem item={item} index={index} />
             </TouchableOpacity>
@@ -173,17 +175,96 @@ export default class Burger extends Component {
 
         <Modal
           style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: screenWidth,
-            height: 300,
+            width: screenWidth - 50,
+            height: 390,
+            borderRadius: 20,
           }}
           ref={'modal1'}
+          backdropOpacity={this.state.backdropOpacity}
           swipeToClose={this.state.swipeToClose}
           onClosed={this.onClosed}
           onOpened={this.onOpened}
           onClosingState={this.onClosingState}>
-            <Text>Basic Modal</Text>
+              <Image
+                style={{
+                  width: screenWidth-10,
+                  height: (screenWidth-10) * 570 / 1080,
+                  marginTop: -15,
+                  marginLeft: -20,
+                }}
+                source={require('../images/Modal/cong-modal.png')}
+              />
+            <View style={{
+              marginLeft: '5%',
+              marginRight: '5%',
+            }}>
+              <Text style={{
+                fontFamily: 'open-sans-Light',
+                fontSize: 12,
+              }}>
+                The burger is a custom blend of ground prime rib, brisket, skirt steak and tenderloin, topped with Nueske’s bacon and Cowgirl Creamery’s triple-cream Mt. Tam cheese.
+The recipe is also delicious with a mix of chuck and sirloin.
+              </Text>
+            </View>
+
+            <View style={{
+              marginTop: '10%',
+              marginLeft: '5%',
+              marginRight: '5%',
+            }}>
+              <Text style={{
+                fontFamily: 'open-sans-Light',
+                fontSize: 12,
+              }}>
+                Ground prime rib, brisket, skirt steak
+              </Text>
+            </View>
+
+            <View style={{
+              marginLeft: '5%',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
+              <View style={{
+                flex: 1,
+                marginTop: '5%'
+              }}>
+
+                <Text style={{
+                  fontFamily: 'open-sans-Light',
+                  fontSize: 12,
+                }}>
+                  Price:
+                  <Text> </Text>
+                  <Text style={{
+                    fontFamily: "open-sans-Regular",
+                  }}>6.5 EUR</Text>
+                </Text>
+
+                <Rating
+                  type='custom'
+                  ratingImage={require('../images/rating/star.png')}
+                  ratingColor='white'
+                  ratingCount={5}
+                  startingValue={5}
+                  imageSize={14}
+                  style={{
+                    marginTop: '10%',
+                  }}
+                />
+              </View>
+
+              <TouchableOpacity>
+                <Image
+                  style={{
+                    width: 90,
+                    height: 90,
+                  }}
+                  source={require('../images/Modal/add-cart.png')}
+                />
+              </TouchableOpacity>
+
+            </View>
         </Modal>
       </View>
     );
