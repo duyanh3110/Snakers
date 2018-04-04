@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Dimensions, Image, TouchableOpacity } from 'react-native';
 
 // import { Font } from 'expo';
 
@@ -13,12 +13,12 @@ import Burger from '../screens/Burger';
 import Pizza from '../screens/Pizza';
 import Dessert from '../screens/Dessert';
 import Drink from '../screens/Drink';
+import BurgerInfo from '../screens/BurgerInfo';
 
 export default class MenuPage extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar />
         <MenuNavigator />
       </View>
     );
@@ -33,7 +33,8 @@ const MenuNavigator = StackNavigator({
   Burger: { screen: Burger },
   Pizza: { screen: Pizza },
   Dessert: { screen: Dessert },
-  Drink: { screen: Drink }
+  Drink: { screen: Drink },
+  BurgerInfo: {screen: BurgerInfo},
 }, {
   headerMode: 'none',
 });

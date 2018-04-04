@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-export default class ClassName extends Component {
+export default class BurgerInfo extends Component {
   render() {
     let screenWidth = Dimensions.get('window').width;
 

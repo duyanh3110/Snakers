@@ -18,8 +18,8 @@ export default class Menu extends React.Component {
     return (
       <View style={styles.container}>
         <Image
-          style={{width: screenWidth, height: screenWidth * 131 / 1080}}
-          source={require('../images/menu/menu-logo.png')}
+          style={{width: screenWidth, height: screenWidth * 203 / 1080}}
+          source={require('../images/menu/cover.png')}
         />
 
         <View style={{
@@ -52,22 +52,10 @@ export default class Menu extends React.Component {
         </View>
 
         <ScrollView>
-          <View style={{
-            height: 80,
-            backgroundColor: 'white',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-            <Text style={{
-              width: screenWidth/2,
-              fontSize: 35,
-              fontFamily: 'sans-serif-light',
-              borderTopWidth: 1,
-              borderBottomWidth: 1,
-              }}>
-              CATEGORY
-            </Text>
-          </View>
+          <Image
+            style={{width: screenWidth, height: screenWidth * 176 / 1080}}
+            source={require('../images/menu/menu-top.png')}
+          />
 
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Burger')}>
             <Image

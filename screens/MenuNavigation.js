@@ -5,13 +5,12 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
   Dimensions,
   TouchableOpacity,
-  ScrollView,
+  Image,
 } from 'react-native';
 
-export default class ClassName extends Component {
+export default class MenuNavigation extends Component {
   render() {
     let screenWidth = Dimensions.get('window').width;
 
@@ -50,7 +49,6 @@ export default class ClassName extends Component {
             />
           </TouchableOpacity>
         </View>
-
       </View>
     );
   }
