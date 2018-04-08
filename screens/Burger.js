@@ -11,10 +11,6 @@ import {
   FlatList,
 } from 'react-native';
 
-import { Rating } from 'react-native-elements';
-
-import Modal from 'react-native-modalbox';
-
 import BurgerMenuData from '../data/burgerMenuData';
 import MenuItem from '../components/MenuItem';
 
@@ -24,7 +20,7 @@ export default class Burger extends Component {
 
     this.state = {
       dataItem: BurgerMenuData,     //change this when you want access another data
-      heightBar: false
+      heightBar: true
     };
   }
 

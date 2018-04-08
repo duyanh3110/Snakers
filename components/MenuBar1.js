@@ -1,19 +1,17 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import {
   View,
   Text,
   StyleSheet,
+  Image,
   Dimensions,
   TouchableOpacity,
-  Image,
+  FlatList,
 } from 'react-native';
 
-export default class MenuNavigation extends Component {
+export default class MenuBar extends React.Component {
   render() {
     let screenWidth = Dimensions.get('window').width;
-
     return (
       <View style={styles.container}>
         <Image
@@ -21,9 +19,7 @@ export default class MenuNavigation extends Component {
           source={require('../images/menu/cover.png')}
         />
 
-        <View style={{
-          flexDirection: 'row',
-        }}>
+        <View style={{flexDirection: 'row'}}>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Menu')}>
             <Image
               style={{width: screenWidth/4, height: (screenWidth * 131 / 270)/4}}
@@ -49,6 +45,11 @@ export default class MenuNavigation extends Component {
             />
           </TouchableOpacity>
         </View>
+
+        <Image
+          style={{width: screenWidth, height: screenWidth * 176 / 1080}}
+          source={require('../images/burger/burger.png')}
+        />
       </View>
     );
   }

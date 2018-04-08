@@ -13,7 +13,7 @@ export default class HomePage extends Component {
 
     this.state = {
       dataItem: BurgerMenuData,     //change this when you want access another data
-      heightBar: true
+      heightBar: false
     };
   }
 
