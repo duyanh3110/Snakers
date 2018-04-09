@@ -11,6 +11,8 @@ import {
   ScrollView,
 } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
+
 export default class Menu extends React.Component {
   render() {
     let screenWidth = Dimensions.get('window').width;
@@ -57,7 +59,7 @@ export default class Menu extends React.Component {
             source={require('../images/menu/menu-top.png')}
           />
 
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Burger')}>
+          <TouchableOpacity onPress={() => Actions.burger()}>
             <Image
               style={{width: screenWidth, height: screenWidth * 412 / 1080}}
               source={require('../images/menu/burger.png')}

@@ -133,7 +133,7 @@ export default class MenuItem extends Component {
 
     return (
       <View style={styles.container}>
-        {checkMenuState()}
+      {checkMenuState()}
 
         <FlatList
         data={this.props.dataItem}

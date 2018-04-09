@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import BurgerMenuData from '../data/burgerMenuData';
+import HomepageData from '../data/homepageData';
 import MenuItem from '../components/MenuItem';
 
 let {height, width} = Dimensions.get('window');
@@ -12,7 +12,7 @@ export default class HomePage extends Component {
     super(props);
 
     this.state = {
-      dataItem: BurgerMenuData,     //change this when you want access another data
+      dataItem: HomepageData,     //change this when you want access another data
       heightBar: false
     };
   }

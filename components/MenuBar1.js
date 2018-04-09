@@ -9,11 +9,12 @@ import {
   FlatList,
 } from 'react-native';
 
-export default class MenuBar extends React.Component {
+let screenWidth = Dimensions.get('window').width;
+
+export default class MenuBar1 extends React.Component {
   render() {
-    let screenWidth = Dimensions.get('window').width;
     return (
-      <View style={styles.container}>
+      <View>
         <Image
           style={{width: screenWidth, height: screenWidth * 203 / 1080}}
           source={require('../images/menu/cover.png')}
@@ -45,7 +46,6 @@ export default class MenuBar extends React.Component {
             />
           </TouchableOpacity>
         </View>
-
         <Image
           style={{width: screenWidth, height: screenWidth * 176 / 1080}}
           source={require('../images/burger/burger.png')}
@@ -54,9 +54,3 @@ export default class MenuBar extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

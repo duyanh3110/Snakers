@@ -12,7 +12,7 @@ import {
 import { Rating } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
-export default class MenuBar extends React.Component {
+export default class MenuBar2 extends React.Component {
   render() {
     let screenWidth = Dimensions.get('window').width;
     return (
