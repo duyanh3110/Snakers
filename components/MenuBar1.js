@@ -12,6 +12,10 @@ import {
 let screenWidth = Dimensions.get('window').width;
 
 export default class MenuBar1 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <View>
@@ -48,7 +52,7 @@ export default class MenuBar1 extends React.Component {
         </View>
         <Image
           style={{width: screenWidth, height: screenWidth * 176 / 1080}}
-          source={require('../images/burger/burger.png')}
+          source={this.props.srcCover}
         />
       </View>
     );

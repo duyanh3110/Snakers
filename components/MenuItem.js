@@ -113,6 +113,7 @@ export default class MenuItem extends Component {
       swipeToClose: true,
       sliderValue: 0.3,
       backdropOpacity: 0.8,
+      srcCover: this.props.srcCover
     };
   }
 
@@ -122,7 +123,7 @@ export default class MenuItem extends Component {
     const checkMenuState = props => {
       if (this.props.heightBar) {
         return(
-          <MenuBar1 />
+          <MenuBar1 srcCover={this.state.srcCover}/>
         );
       } else {
         return(
