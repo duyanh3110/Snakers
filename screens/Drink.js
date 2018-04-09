@@ -1,34 +1,29 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
-import BurgerMenuData from '../data/burgerMenuData';
+import drinkMenuData from '../data/drinkMenuData';
 import MenuItem from '../components/MenuItem';
 
-export default class ClassName extends Component {
+export default class Drink extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      dataItem: BurgerMenuData,     //change this when you want access another data
-      heightBar: true
+      dataItem: drinkMenuData,     //change this when you want access another data
+      heightBar: true,
+      srcCover: require('../images/burger/burger.png')
     };
   }
+
   render() {
     return (
       <View style={styles.container}>
         <MenuItem
           dataItem={this.state.dataItem}
           heightBar={this.state.heightBar}
+          srcCover={this.state.srcCover}
         />
       </View>
     );

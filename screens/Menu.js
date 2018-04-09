@@ -65,19 +65,19 @@ export default class Menu extends React.Component {
               source={require('../images/menu/burger.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Pizza')}>
+          <TouchableOpacity onPress={() => Actions.pizza()}>
             <Image
               style={{width: screenWidth, height: screenWidth * 412 / 1080}}
               source={require('../images/menu/pizza.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Dessert')}>
+          <TouchableOpacity onPress={() => Actions.dessert()}>
             <Image
               style={{width: screenWidth, height: screenWidth * 412 / 1080}}
               source={require('../images/menu/dessert.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Drink')}>
+          <TouchableOpacity onPress={() => Actions.drink()}>
             <Image
               style={{width: screenWidth, height: screenWidth * 412 / 1080}}
               source={require('../images/menu/drink.png')}

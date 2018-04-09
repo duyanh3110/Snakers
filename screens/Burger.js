@@ -1,15 +1,7 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 import BurgerMenuData from '../data/burgerMenuData';
 import MenuItem from '../components/MenuItem';
@@ -26,8 +18,6 @@ export default class Burger extends Component {
   }
 
   render() {
-    let screenWidth = Dimensions.get('window').width;
-
     return (
       <View style={styles.container}>
         <MenuItem
