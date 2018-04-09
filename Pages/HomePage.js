@@ -17,10 +17,6 @@ export default class HomePage extends Component {
     };
   }
 
-  menu = () => {
-    Actions.menu()
-  };
-
   render() {
     return (
       <View style={styles.container}>
