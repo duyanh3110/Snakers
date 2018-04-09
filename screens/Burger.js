@@ -20,7 +20,8 @@ export default class Burger extends Component {
 
     this.state = {
       dataItem: BurgerMenuData,     //change this when you want access another data
-      heightBar: true
+      heightBar: true,
+      srcCover: '../images/burger/burger.png'
     };
   }
 
@@ -32,6 +33,7 @@ export default class Burger extends Component {
         <MenuItem
           dataItem={this.state.dataItem}
           heightBar={this.state.heightBar}
+          srcCover={this.state.srcCover}
         />
       </View>
     );
