@@ -86,11 +86,11 @@ export default class FlatListItem extends Component {
                 startingValue={5}
                 imageSize={14}
               />
-              <TouchableOpacity>
+            <TouchableOpacity>
                 <Image
                   style={{
-                    width: 14,
-                    height: 14,
+                    width: 17,
+                    height: 17,
                   }}
                   source={require('../images/rating/cart.png')}
                 />
