@@ -9,12 +9,24 @@ import {
   FlatList,
 } from 'react-native';
 
+import * as firebase from 'firebase';
 import { Rating } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
 export default class MenuBar2 extends React.Component {
   render() {
     let screenWidth = Dimensions.get('window').width;
+    let user = firebase.auth().currentUser;
+    let name, email, photoUrl, uid, emailVerified;
+
+    if (user != null) {
+      name = user.displayName;
+      email = user.email;
+      photoUrl = user.photoURL;
+      emailVerified = user.emailVerified;
+      uid = user.uid;
+    }
+
     return (
       <View style={styles.container}>
         <View>
@@ -22,7 +34,7 @@ export default class MenuBar2 extends React.Component {
             style={styles.coverImg}
             source={require('../images/home/cover.png')}/>
           <View style={styles.helloUser}>
-            <Text style={styles.textUser}>Greeting, John</Text>
+            <Text style={styles.textUser}>Greeting, {name}</Text>
             <Text style={styles.textWelcome}>It's time for some tasty snacks!</Text>
           </View>
         </View>
@@ -57,7 +69,7 @@ export default class MenuBar2 extends React.Component {
 let {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    
   },
   coverImg: {
     width: width,

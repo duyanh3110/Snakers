@@ -15,9 +15,6 @@ export default class MenuBar1 extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      srcCover: this.props.srcCover
-    };
   }
 
   render() {
@@ -62,11 +59,11 @@ export default class MenuBar1 extends React.Component {
             source={require('../images/burger/burger.png')}
           />
         </View>
-      )
-    }
-
-    return null;
-
-
+        <Image
+          style={{width: screenWidth, height: screenWidth * 176 / 1080}}
+          source={this.props.srcCover}
+        />
+      </View>
+    );
   }
 }
