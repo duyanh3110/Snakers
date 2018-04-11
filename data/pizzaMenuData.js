@@ -4,7 +4,7 @@ var pizzaMenuData = [
       "name": "Neapolitan",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/snackers-9ff5b.appspot.com/o/images%2Fpizza-menu%2FNeapolitan.jpg?alt=media&token=465a3b51-b7f1-4d24-999b-036fcaf67e26",
       "foodDescription": "Tomato sauce, bufala mozzarella cheese",
-      "price": "8 €"
+      "price": 8
     },
     {
       "key": "598a684f78fee204ee51cd2f",

@@ -67,7 +67,7 @@ class FlatListItem extends Component {
                 fontFamily: 'open-sans-Regular',
                 marginBottom: '5%',
               }}>
-                {this.props.item.price}
+                {this.props.item.price} + '$'
               </Text>
             </Text>
 
