@@ -34,7 +34,7 @@ export default class ClassName extends Component {
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Basket')}>
             <Image
               style={{width: screenWidth/4, height: (screenWidth * 131 / 270)/4}}
-              source={require('../images/menu/basket.png')}
+              source={require('../images/menu/cart.png')}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('User')}>
