@@ -11,19 +11,23 @@ import {
   ScrollView,
 } from 'react-native';
 
-import OriginalMenuBar from '../components/OriginalMenuBar';
+import MenuBar1 from '../components/MenuBar1';
 
 export default class ClassName extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      srcCover: require('../images/Basket/basket.png')
+    };
+  }
+
   render() {
     let screenWidth = Dimensions.get('window').width;
 
     return (
       <View style={styles.container}>
-        <OriginalMenuBar />
-        <Image
-          style={{width: screenWidth, height: screenWidth * 176 / 1080}}
-          source={require('../images/Basket/basket.png')}
-        />
+        <MenuBar1 srcCover={this.state.srcCover}/>
 
         
 
