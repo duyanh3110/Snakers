@@ -25,7 +25,7 @@ export default class ClassName extends Component {
           source={require('../images/Basket/basket.png')}
         />
 
-
+        
 
       </View>
     );
