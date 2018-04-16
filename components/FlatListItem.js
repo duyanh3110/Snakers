@@ -14,7 +14,21 @@ import { Rating } from 'react-native-elements';
 export default class FlatListItem extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      cartData: this.props.cartData,
+      itemInfo: this.props.item,
+      itemData: []
+    };
   }
+
+  itemSelectedHandler = item => {
+    item = this.state.itemInfo;
+    this.setState({
+      itemData: this.state.itemData.concat(item)
+    });
+    console.log(this.state.itemData);
+  };
 
   render() {
     let screenWidth = Dimensions.get('window').width;
@@ -86,7 +100,7 @@ export default class FlatListItem extends Component {
                 startingValue={5}
                 imageSize={14}
               />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.itemSelectedHandler}>
                 <Image
                   style={{
                     width: 17,

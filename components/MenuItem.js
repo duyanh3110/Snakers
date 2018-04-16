@@ -27,7 +27,8 @@ export default class MenuItem extends Component {
       swipeToClose: true,
       sliderValue: 0.3,
       backdropOpacity: 0.8,
-      srcCover: this.props.srcCover
+      srcCover: this.props.srcCover,
+      cartData: []
     };
   }
 
@@ -57,12 +58,16 @@ export default class MenuItem extends Component {
             <TouchableOpacity
               onLongPress={() => this.refs.modal1.open()}
               onPress={() => Actions.modalDetail()}>
-              <FlatListItem item={item} index={index} />
+              <FlatListItem
+                item={item}
+                index={index}
+                cartData={this.state.cartData}
+              />
             </TouchableOpacity>
           );
         }}
         />
-
+      
         <Modal
           style={{
             width: screenWidth - 50,
