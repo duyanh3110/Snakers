@@ -37,7 +37,7 @@ export default class MenuBar1 extends React.Component {
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Basket')}>
             <Image
               style={{width: screenWidth/4, height: (screenWidth * 103 / 272)/4}}
-              source={require('../images/menu/cart-active.png')}
+              source={require('../images/menu/cart.png')}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('User')}>
