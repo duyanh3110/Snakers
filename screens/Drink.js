@@ -13,7 +13,7 @@ export default class Drink extends Component {
     this.state = {
       dataItem: drinkMenuData,     //change this when you want access another data
       heightBar: true,
-      srcCover: require('../images/burger/burger.png')
+      srcCover: require('../images/burger/drink.png')
     };
   }
 

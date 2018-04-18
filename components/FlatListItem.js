@@ -26,7 +26,7 @@ export default class FlatListItem extends Component {
           backgroundColor: 'white',
           marginLeft: '5%',
           marginRight: '5%',
-          marginBottom: '5%',
+          marginBottom: '3%',
           marginTop: '5%',
           borderColor: '#f0f0f0',
           borderWidth: 1,

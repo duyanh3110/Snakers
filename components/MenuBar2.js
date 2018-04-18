@@ -60,7 +60,7 @@ export default class MenuBar2 extends React.Component {
               source={require('../images/home/feedback.png')}/>
           </TouchableOpacity>
         </View>
-        <Text style={styles.bestSell}>BEST SELLER</Text>
+        <Text style={styles.bestSell}>BEST SELLING</Text>
       </View>
     );
   }
@@ -69,7 +69,7 @@ export default class MenuBar2 extends React.Component {
 let {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
-    
+    backgroundColor: 'white',
   },
   coverImg: {
     width: width,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     height: (width/4)*120/270
   },
   bestSell: {
-    fontSize: 18,
+    fontSize: 14,
     color: '#c9283e',
     fontFamily: 'open-sans-Bold',
     marginTop: 12,
