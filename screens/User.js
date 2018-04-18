@@ -11,45 +11,77 @@ import {
   ScrollView,
 } from 'react-native';
 
-export default class ClassName extends Component {
+import MenuBar1 from '../components/MenuBar1';
+
+export default class User extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      srcCover: require('../images/user/menu-top.png')
+    };
+  }
+
   render() {
     let screenWidth = Dimensions.get('window').width;
 
     return (
       <View style={styles.container}>
-        <Image
-          style={{width: screenWidth, height: screenWidth * 203 / 1080}}
-          source={require('../images/menu/cover.png')}
-        />
+        <MenuBar1 srcCover={this.state.srcCover}/>
 
-        <View style={{
-          flexDirection: 'row',
-        }}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Menu')}>
+        <ScrollView>
+          <View style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'white',
+          }}>
             <Image
-              style={{width: screenWidth/4, height: (screenWidth * 131 / 270)/4}}
-              source={require('../images/menu/menu.png')}
+              style={{width: screenWidth/5, height: (screenWidth * 164 / 164)/5, marginBottom: '2%'}}
+              source={require('../images/user/ava-user.png')}
+            />
+            <Text style={{
+              textAlign: 'center',
+              fontFamily: 'open-sans-Regular',
+              fontSize: 14,
+              marginBottom: '2%',
+            }}>
+              Minh Anh
+            </Text>
+            <Text style={{
+              textAlign: 'center',
+              fontFamily: 'open-sans-Bold',
+              fontSize: 12,
+              marginBottom: '2%',
+            }}>
+              MINHANH.VD31@GMAIL.COM
+            </Text>
+          </View>
+
+          <TouchableOpacity>
+            <Image
+              style={{width: screenWidth, height: screenWidth * 413 / 1080}}
+              source={require('../images/user/edit-profile.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Basket')}>
+          <TouchableOpacity>
             <Image
-              style={{width: screenWidth/4, height: (screenWidth * 131 / 270)/4}}
-              source={require('../images/menu/basket.png')}
+              style={{width: screenWidth, height: screenWidth * 413 / 1080}}
+              source={require('../images/user/payment-method.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('User')}>
+          <TouchableOpacity>
             <Image
-              style={{width: screenWidth/4, height: (screenWidth * 131 / 270)/4}}
-              source={require('../images/menu/user.png')}
+              style={{width: screenWidth, height: screenWidth * 413 / 1080}}
+              source={require('../images/user/history.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Feedback')}>
+          <TouchableOpacity>
             <Image
-              style={{width: screenWidth/4, height: (screenWidth * 131 / 270)/4}}
-              source={require('../images/menu/feedback.png')}
+              style={{width: screenWidth, height: screenWidth * 413 / 1080}}
+              source={require('../images/user/signout.png')}
             />
           </TouchableOpacity>
-        </View>
+        </ScrollView>
 
       </View>
     );

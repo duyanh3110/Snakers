@@ -29,7 +29,7 @@ export default class ClassName extends Component {
       <View style={styles.container}>
         <MenuBar1 srcCover={this.state.srcCover}/>
 
-
+        
 
       </View>
     );
