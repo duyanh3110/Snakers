@@ -14,7 +14,10 @@ import {
 
 import SaveMethod from './PaymentPage/save-method';
 import InternationCard from './PaymentPage/international-card';
-import Domestic from './PaymentPage/domestic';
+import DomesticLahi from './PaymentPage/domesticLahi';
+import DomesticOP from './PaymentPage/domesticOP';
+import DomesticNodr from './PaymentPage/domesticNodr';
+import DomesticSaas from './PaymentPage/domesticSaas';
 import Paypal from './PaymentPage/paypal';
 
 import MenuBar1 from '../components/MenuBar1';
@@ -27,7 +30,10 @@ export default class Payment extends Component {
       srcCover: require('../images/Basket/payment.png'),
       savedmethod: false,
       international: false,
-      domestic: false,
+      domesticLahi: false,
+      domesticOP: false,
+      domesticNodr: false,
+      domesticSaas: false,
       paypal: false,
     };
   }
@@ -36,7 +42,10 @@ export default class Payment extends Component {
     if(this.state.savedmethod == false){
       this.setState({savedmethod: true});
       this.setState({international: false});
-      this.setState({domestic: false});
+      this.setState({domesticLahi: false});
+      this.setState({domesticOP: false});
+      this.setState({domesticNodr: false});
+      this.setState({domesticSaas: false});
     }
     else {
       this.setState({savedmethod: false});
@@ -47,21 +56,69 @@ export default class Payment extends Component {
     if(this.state.international == false){
       this.setState({international: true});
       this.setState({savedmethod: false});
-      this.setState({domestic: false});
+      this.setState({domesticLahi: false});
+      this.setState({domesticOP: false});
+      this.setState({domesticNodr: false});
+      this.setState({domesticSaas: false});
     }
     else {
       this.setState({international: false});
     }
   }
 
-  ShowDomesticView() {
-    if(this.state.domestic == false){
-      this.setState({domestic: true});
+  ShowDomesticLahiView() {
+    if(this.state.domesticLahi == false){
+      this.setState({domesticLahi: true});
       this.setState({savedmethod: false});
       this.setState({international: false});
+      this.setState({domesticOP: false});
+      this.setState({domesticNodr: false});
+      this.setState({domesticSaas: false});
     }
     else {
-      this.setState({domestic: false});
+      this.setState({domesticLahi: false});
+    }
+  }
+
+  ShowDomesticOPView() {
+    if(this.state.domesticOP == false){
+      this.setState({domesticOP: true});
+      this.setState({savedmethod: false});
+      this.setState({international: false});
+      this.setState({domesticLahi: false});
+      this.setState({domesticNodr: false});
+      this.setState({domesticSaas: false});
+    }
+    else {
+      this.setState({domesticOP: false});
+    }
+  }
+
+  ShowDomesticNodrView() {
+    if(this.state.domesticNodr == false){
+      this.setState({domesticNodr: true});
+      this.setState({savedmethod: false});
+      this.setState({international: false});
+      this.setState({domesticLahi: false});
+      this.setState({domesticOP: false});
+      this.setState({domesticSaas: false});
+    }
+    else {
+      this.setState({domesticNodr: false});
+    }
+  }
+
+  ShowDomesticSaasView() {
+    if(this.state.domesticSaas == false){
+      this.setState({domesticSaas: true});
+      this.setState({savedmethod: false});
+      this.setState({international: false});
+      this.setState({domesticLahi: false});
+      this.setState({domesticOP: false});
+      this.setState({domesticNodr: false});
+    }
+    else {
+      this.setState({domesticSaas: false});
     }
   }
 
@@ -70,7 +127,10 @@ export default class Payment extends Component {
       this.setState({paypal: true});
       this.setState({savedmethod: false});
       this.setState({international: false});
-      this.setState({domestic: false});
+      this.setState({domesticLahi: false});
+      this.setState({domesticOP: false});
+      this.setState({domesticNodr: false});
+      this.setState({domesticSaas: false});
     }
     else {
       this.setState({paypal: false});
@@ -192,28 +252,28 @@ export default class Payment extends Component {
               marginTop: "7%",
             }}
             >
-              <TouchableOpacity onPress={this.ShowDomesticView.bind(this)}>
+              <TouchableOpacity onPress={this.ShowDomesticLahiView.bind(this)}>
                 <Image
                   style={{width: screenWidth/6, height: (screenWidth * 192 / 192)/6}}
                   source={require('../images/Basket/Lahitapiola.png')}
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={this.ShowDomesticView.bind(this)}>
+              <TouchableOpacity onPress={this.ShowDomesticOPView.bind(this)}>
                 <Image
                   style={{width: screenWidth/6, height: (screenWidth * 192 / 192)/6}}
                   source={require('../images/Basket/op.png')}
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={this.ShowDomesticView.bind(this)}>
+              <TouchableOpacity onPress={this.ShowDomesticNodrView.bind(this)}>
                 <Image
                   style={{width: screenWidth/6, height: (screenWidth * 192 / 192)/6}}
                   source={require('../images/Basket/nordea.png')}
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={this.ShowDomesticView.bind(this)}>
+              <TouchableOpacity onPress={this.ShowDomesticSaasView.bind(this)}>
                 <Image
                   style={{width: screenWidth/6, height: (screenWidth * 192 / 192)/6}}
                   source={require('../images/Basket/saato.png')}
@@ -226,7 +286,25 @@ export default class Payment extends Component {
 
           <View>
             {
-              this.state.domestic ? <Domestic /> : null
+              this.state.domesticLahi ? <DomesticLahi /> : null
+            }
+          </View>
+
+          <View>
+            {
+              this.state.domesticOP ? <DomesticOP /> : null
+            }
+          </View>
+
+          <View>
+            {
+              this.state.domesticNodr? <DomesticNodr /> : null
+            }
+          </View>
+
+          <View>
+            {
+              this.state.domesticSaas ? <DomesticSaas /> : null
             }
           </View>
 
