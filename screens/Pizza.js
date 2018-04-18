@@ -13,7 +13,7 @@ export default class Pizza extends Component {
     this.state = {
       dataItem: pizzaMenuData,     //change this when you want access another data
       heightBar: true,
-      srcCover: require('../images/burger/burger.png')    //change title cover here
+      srcCover: require('../images/burger/pizza.png')    //change title cover here
     };
   }
 
