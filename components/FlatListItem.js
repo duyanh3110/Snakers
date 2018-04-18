@@ -11,7 +11,7 @@ import {
 
 import { Rating } from 'react-native-elements';
 
-export let cartData = [];
+let cartData = [];
 
 export default class FlatListItem extends Component {
   constructor(props) {
@@ -43,7 +43,8 @@ export default class FlatListItem extends Component {
     }
     item.amount++;
     cartData = this.state.itemData;
-    console.log(cartData);
+    this.props.addCartData(cartData);
+    //console.log(cartData);
   };
 
   render() {

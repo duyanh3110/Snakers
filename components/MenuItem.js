@@ -32,6 +32,18 @@ export default class MenuItem extends Component {
     };
   }
 
+  componentDidMount() {
+    this.dataCallback();
+  }
+
+  dataCallback = item => {
+    const {cartData} = this.state;
+    this.setState({
+      cartData: [...this.state.cartData, item]
+    });
+    console.log(this.state.cartData);
+  }
+
   render() {
     let screenWidth = Dimensions.get('window').width;
 
@@ -61,6 +73,7 @@ export default class MenuItem extends Component {
               <FlatListItem
                 item={item}
                 index={index}
+                addCartData={this.dataCallback}
               />
             </TouchableOpacity>
           );
