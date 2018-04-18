@@ -11,23 +11,39 @@ import {
 
 import { Rating } from 'react-native-elements';
 
+export let cartData = [];
+
 export default class FlatListItem extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      cartData: this.props.cartData,
-      itemInfo: this.props.item,
+      itemInfo: [],
       itemData: []
     };
   }
 
+  componentWillMount() {
+    this.setState({
+      itemInfo: this.props.item
+    });
+  }
+
+  componentDidMount() {
+    this.itemSelectedHandler();
+  }
+
   itemSelectedHandler = item => {
     item = this.state.itemInfo;
-    this.setState({
-      itemData: this.state.itemData.concat(item)
-    });
-    console.log(this.state.itemData);
+    const {itemData} = this.state;
+    if (item.amount == -1) {
+      this.setState({
+        itemData: [...this.state.itemData, item]
+      });
+    }
+    item.amount++;
+    cartData = this.state.itemData;
+    console.log(cartData);
   };
 
   render() {

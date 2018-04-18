@@ -61,13 +61,12 @@ export default class MenuItem extends Component {
               <FlatListItem
                 item={item}
                 index={index}
-                cartData={this.state.cartData}
               />
             </TouchableOpacity>
           );
         }}
         />
-      
+
         <Modal
           style={{
             width: screenWidth - 50,
