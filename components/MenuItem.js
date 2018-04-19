@@ -16,7 +16,8 @@ import Modal from 'react-native-modalbox';
 import FlatListItem from './FlatListItem';
 import MenuBar1 from './MenuBar1';
 import MenuBar2 from './MenuBar2';
-export let TotalCart = [];
+import CartData from '../data/cartData';
+
 export default class MenuItem extends Component {
   constructor(props) {
     super(props);
@@ -45,21 +46,29 @@ export default class MenuItem extends Component {
   //   console.log(this.state.cartData);
   // }
 
-  addToCart = item => {
-    let checkItem = this.state.cartData.indexOf(item);
-    if (checkItem == -1) {
-      this.state.cartData = this.state.cartData.concat(item);
+  addToCart = (item, amount, key) => {
+    let checkItem = CartData.indexOf(item);
+    if (checkItem == -1 && CartData.length == 0) {
+      return CartData.push(item);
+    } else {
+      CartData.find(itemAdded => {
+        if (itemAdded.key === key) {
+          itemAdded.amount = amount;
+        } else {
+          return CartData.push(item);
+        }
+      })
     }
-    TotalCart = this.state.cartData;
-    //console.log(TotalCart);
+
+    console.log(CartData);
   }
 
   addItemSelected = (amount, key) => {
     if (amount > 0) {
       this.state.itemInfo.find(item => {
         if (item.key === key) {
-          item.amount = amount;
-          this.addToCart(item);
+          //item.amount = amount;
+          this.addToCart(item, amount, key);
         }
       });
     }
