@@ -16,7 +16,7 @@ import Modal from 'react-native-modalbox';
 import FlatListItem from './FlatListItem';
 import MenuBar1 from './MenuBar1';
 import MenuBar2 from './MenuBar2';
-
+export let TotalCart = [];
 export default class MenuItem extends Component {
   constructor(props) {
     super(props);
@@ -28,20 +28,42 @@ export default class MenuItem extends Component {
       sliderValue: 0.3,
       backdropOpacity: 0.8,
       srcCover: this.props.srcCover,
-      cartData: []
+      cartData: [],
+      itemInfo: this.props.dataItem
     };
   }
 
-  componentDidMount() {
-    this.dataCallback();
+  // componentDidMount() {
+  //   this.addToCart();
+  // }
+  //
+  // dataCallback = item => {
+  //   const {cartData} = this.state;
+  //   this.setState({
+  //     cartData: [...this.state.cartData, item]
+  //   });
+  //   console.log(this.state.cartData);
+  // }
+
+  addToCart = item => {
+    let checkItem = this.state.cartData.indexOf(item);
+    if (checkItem == -1) {
+      this.state.cartData = this.state.cartData.concat(item);
+    }
+    TotalCart = this.state.cartData;
+    //console.log(TotalCart);
   }
 
-  dataCallback = item => {
-    const {cartData} = this.state;
-    this.setState({
-      cartData: [...this.state.cartData, item]
-    });
-    console.log(this.state.cartData);
+  addItemSelected = (amount, key) => {
+    if (amount > 0) {
+      this.state.itemInfo.find(item => {
+        if (item.key === key) {
+          item.amount = amount;
+          this.addToCart(item);
+        }
+      });
+    }
+    //console.log(amount);
   }
 
   render() {
@@ -73,7 +95,7 @@ export default class MenuItem extends Component {
               <FlatListItem
                 item={item}
                 index={index}
-                addCartData={this.dataCallback}
+                dataCallback={this.addItemSelected}
               />
             </TouchableOpacity>
           );

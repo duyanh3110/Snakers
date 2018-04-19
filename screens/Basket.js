@@ -18,6 +18,7 @@ import Domestic from './PaymentPage/domestic';
 import Paypal from './PaymentPage/paypal';
 
 import MenuBar1 from '../components/MenuBar1';
+import {TotalCart} from '../components/MenuItem';
 
 export default class Payment extends Component {
   constructor(props) {
@@ -79,6 +80,8 @@ export default class Payment extends Component {
 
   render() {
     let screenWidth = Dimensions.get('window').width;
+
+    console.log(TotalCart);
 
     return (
       <View style={styles.container}>
