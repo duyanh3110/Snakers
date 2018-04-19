@@ -35,7 +35,7 @@ export default class MenuItem extends Component {
   }
 
   // componentDidMount() {
-  //   this.addToCart();
+  //   this.addItemSelected();
   // }
   //
   // dataCallback = item => {
@@ -46,33 +46,33 @@ export default class MenuItem extends Component {
   //   console.log(this.state.cartData);
   // }
 
-  addToCart = (item, amount, key) => {
-    let checkItem = CartData.indexOf(item);
-    if (checkItem == -1 && CartData.length == 0) {
-      return CartData.push(item);
-    } else {
-      CartData.find(itemAdded => {
-        if (itemAdded.key === key) {
-          itemAdded.amount = amount;
-        } else {
-          return CartData.push(item);
-        }
-      })
-    }
+  addToCart = item => {
+   let checkItem = CartData.indexOf(item);
+   if (checkItem == -1 && CartData.length == 0) {
+     return CartData.push(item);
+   } else {
+     CartData.find(itemAdded => {
+       if (itemAdded.key === item.key) {
+         itemAdded.amount = item.amount;
+       } else {
+         return CartData.push(item);
+       }
+     })
+   }
 
-    console.log(CartData);
+   console.log(CartData);
   }
 
   addItemSelected = (amount, key) => {
-    if (amount > 0) {
-      this.state.itemInfo.find(item => {
-        if (item.key === key) {
-          //item.amount = amount;
-          this.addToCart(item, amount, key);
-        }
-      });
-    }
-    //console.log(amount);
+   if (amount > 0) {
+     this.state.itemInfo.find(item => {
+       if (item.key === key) {
+         //item.amount = amount;
+         this.addToCart(item);
+       }
+     });
+   }
+   //console.log(amount);
   }
 
   render() {
