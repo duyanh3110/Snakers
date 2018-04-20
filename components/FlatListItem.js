@@ -11,10 +11,40 @@ import {
 
 import { Rating } from 'react-native-elements';
 
+let cartData = [];
+
 export default class FlatListItem extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      itemInfo: this.props.item,
+      itemData: []
+    };
   }
+
+  // componentWillMount() {
+  //   this.setState({
+  //     itemInfo: this.props.item
+  //   });
+  // }
+
+  // componentDidMount() {
+  //   this.itemSelectedHandler();
+  // }
+  //
+  // itemSelectedHandler = item => {
+  //   item = this.state.itemInfo;
+  //   const {itemData} = this.state;
+  //   if (item.amount == -1) {
+  //     this.setState({
+  //       itemData: [...this.state.itemData, item]
+  //     });
+  //   }
+  //   item.amount++;
+  //   cartData = this.state.itemData;
+  //   console.log(cartData);
+  // };
 
   render() {
     let screenWidth = Dimensions.get('window').width;
@@ -86,7 +116,10 @@ export default class FlatListItem extends Component {
                 startingValue={5}
                 imageSize={14}
               />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+                this.props.dataCallback(++this.state.itemInfo.amount, this.state.itemInfo.key);
+                //console.log(this.state.itemInfo);
+              }}>
                 <Image
                   style={{
                     width: 17,

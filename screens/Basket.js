@@ -21,6 +21,7 @@ import DomesticSaas from './PaymentPage/domesticSaas';
 import Paypal from './PaymentPage/paypal';
 
 import MenuBar1 from '../components/MenuBar1';
+import CartData from '../data/cartData';
 
 export default class Payment extends Component {
   constructor(props) {
@@ -139,6 +140,8 @@ export default class Payment extends Component {
 
   render() {
     let screenWidth = Dimensions.get('window').width;
+
+    console.log(CartData);
 
     return (
       <View style={styles.container}>
