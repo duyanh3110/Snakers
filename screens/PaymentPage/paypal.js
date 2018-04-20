@@ -19,47 +19,34 @@ export default class InternationCard extends Component {
     let screenWidth = Dimensions.get('window').width;
     return (
       <View>
-        <View style={{
-          justifyContent: 'center',
-        }}>
+        <View>
           <TextInput
             style={{height: 40, borderBottomColor: 'black', textAlign: 'center', fontFamily: 'open-sans-Regular', marginLeft: "17%", marginRight: "17%", fontSize: 12}}
             onChangeText={(text) => this.setState({text})}
-            placeholder= "N A M E  O N  C A R D"
+            placeholder= "E M A I L"
           />
           <TextInput
-            style={{height: 40, borderBottomColor: 'black', textAlign: 'center', fontFamily: 'open-sans-Regular', marginLeft: "9%", marginRight: "9%", fontSize: 12}}
+            style={{height: 40, borderBottomColor: 'black', textAlign: 'center', fontFamily: 'open-sans-Regular', marginLeft: "17%", marginRight: "17%", fontSize: 12}}
             onChangeText={(text) => this.setState({text})}
-            placeholder= "C A R D  N U M B E R"
+            placeholder= "P A S S W O R D"
           />
+
           <View style={{
-            flexDirection: 'row',
             justifyContent: 'center',
+            alignItems: 'center',
           }}>
-            <TextInput
-              style={{
-                height: 40,
-                width: "41%",
-                borderBottomColor: 'black',
-                textAlign: 'center',
-                fontFamily: 'open-sans-Regular',
-                fontSize: 12
-              }}
-              onChangeText={(text) => this.setState({text})}
-              placeholder= "E X P I R Y  D A T E"
-            />
-            <TextInput
-            style={{
-              height: 40,
-              width: "41%",
-              borderBottomColor: 'black',
-              textAlign: 'center',
-              fontFamily: 'open-sans-Regular',
-              fontSize: 12
-            }}
-              onChangeText={(text) => this.setState({text})}
-              placeholder= "S E C U R I T Y  C O D E"
-            />
+            <TouchableOpacity>
+              <Image
+                style={{
+                  width: screenWidth/2,
+                  height: (screenWidth * 103 / 457)/2,
+                  marginTop: "5%",
+                  marginBottom: "10%",
+                  justifyContent: 'center',
+                }}
+                source={require('../../images/Basket/sign-in-btn.png')}
+              />
+            </TouchableOpacity>
           </View>
         </View>
 
