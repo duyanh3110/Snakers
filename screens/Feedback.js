@@ -57,7 +57,6 @@ export default class Feedback extends Component {
                 Order #5235967
             </Text>
           </ImageBackground>
-
           <ListFoodHorizontal/>
 
           <View style={{

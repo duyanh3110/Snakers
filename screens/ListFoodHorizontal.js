@@ -7,11 +7,14 @@ import {
   StyleSheet,
   ScrollView,
   Image,
+  ImageBackground,
 } from 'react-native';
 
 export default class ListFoodHorizontal extends Component {
   render() {
     return (
+      
+
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
