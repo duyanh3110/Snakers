@@ -48,32 +48,21 @@ export default class MenuItem extends Component {
 
   addToCart = item => {
    let checkItem = CartData.indexOf(item);
-   if (checkItem == -1 && CartData.length == 0) {
+   if (checkItem == -1) {
      return CartData.push(item);
-   } else {
-     CartData.find(itemAdded => {
-       if (itemAdded.key === item.key) {
-         itemAdded.amount = item.amount;
-       } else {
-         return CartData.push(item);
-       }
-     })
    }
-
    console.log(CartData);
-  }
+ }
 
-  addItemSelected = (amount, key) => {
-   if (amount > 0) {
-     this.state.itemInfo.find(item => {
-       if (item.key === key) {
-         //item.amount = amount;
-         this.addToCart(item);
-       }
-     });
-   }
+ addItemSelected = key => {
+   this.state.itemInfo.find(item => {
+     if (item.key === key) {
+       item.amount++;
+       this.addToCart(item);
+     }
+   });
    //console.log(amount);
-  }
+ }
 
   render() {
     let screenWidth = Dimensions.get('window').width;

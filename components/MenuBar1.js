@@ -9,7 +9,7 @@ import {
   FlatList,
 } from 'react-native';
 
-let screenWidth = Dimensions.get('window').width;
+import { Actions } from 'react-native-router-flux';
 
 export default class MenuBar1 extends React.Component {
   constructor(props) {
@@ -17,6 +17,7 @@ export default class MenuBar1 extends React.Component {
   }
 
   render() {
+    let screenWidth = Dimensions.get('window').width;
     return (
       <View>
         <Image
@@ -28,25 +29,25 @@ export default class MenuBar1 extends React.Component {
           flexDirection: 'row',
           marginTop: -40,
         }}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Menu')}>
+          <TouchableOpacity onPress={() => Actions.menu()}>
             <Image
               style={{width: screenWidth/4, height: (screenWidth * 103 / 272)/4}}
               source={require('../images/menu/menu.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Basket')}>
+          <TouchableOpacity onPress={() => Actions.basket()}>
             <Image
               style={{width: screenWidth/4, height: (screenWidth * 103 / 272)/4}}
               source={require('../images/menu/cart.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('User')}>
+          <TouchableOpacity onPress={() => Actions.user()}>
             <Image
               style={{width: screenWidth/4, height: (screenWidth * 103 / 272)/4}}
               source={require('../images/menu/user.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Feedback')}>
+          <TouchableOpacity onPress={() => Actions.feedback()}>
             <Image
               style={{width: screenWidth/4, height: (screenWidth * 103 / 272)/4}}
               source={require('../images/menu/feedback.png')}

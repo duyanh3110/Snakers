@@ -117,7 +117,7 @@ export default class FlatListItem extends Component {
                 imageSize={14}
               />
             <TouchableOpacity onPress={() => {
-                this.props.dataCallback(++this.state.itemInfo.amount, this.state.itemInfo.key);
+                this.props.dataCallback(this.state.itemInfo.key);
                 //console.log(this.state.itemInfo);
               }}>
                 <Image
