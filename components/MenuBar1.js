@@ -14,6 +14,45 @@ import { Actions } from 'react-native-router-flux';
 export default class MenuBar1 extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      status: this.props.iconStatus,
+      menu: require('../images/menu/menu.png'),
+      basket: require('../images/menu/cart.png'),
+      user: require('../images/menu/user.png'),
+      feedback: require('../images/menu/feedback.png')
+    };
+  }
+
+  componentWillMount() {
+    switch (this.state.status) {
+      case 'menu':
+        //this.state.menu = this.props.iconEnable;    //ok as well, but not cool
+        this.setState({
+          menu: this.props.iconEnable
+        });
+        break;
+      case 'basket':
+        //this.state.menu = this.props.iconEnable;    //ok as well, but not cool
+        this.setState({
+          basket: this.props.iconEnable
+        });
+        break;
+      case 'user':
+        //this.state.menu = this.props.iconEnable;    //ok as well, but not cool
+        this.setState({
+          user: this.props.iconEnable
+        });
+        break;
+      case 'feedback':
+        //this.state.menu = this.props.iconEnable;    //ok as well, but not cool
+        this.setState({
+          feedback: this.props.iconEnable
+        });
+        break;
+      default:
+        break;
+    }
   }
 
   render() {
@@ -32,25 +71,25 @@ export default class MenuBar1 extends React.Component {
           <TouchableOpacity onPress={() => Actions.menu()}>
             <Image
               style={{width: screenWidth/4, height: (screenWidth * 103 / 272)/4}}
-              source={require('../images/menu/menu.png')}
+              source={this.state.menu}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => Actions.basket()}>
             <Image
               style={{width: screenWidth/4, height: (screenWidth * 103 / 272)/4}}
-              source={require('../images/menu/cart.png')}
+              source={this.state.basket}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => Actions.user()}>
             <Image
               style={{width: screenWidth/4, height: (screenWidth * 103 / 272)/4}}
-              source={require('../images/menu/user.png')}
+              source={this.state.user}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => Actions.feedback()}>
             <Image
               style={{width: screenWidth/4, height: (screenWidth * 103 / 272)/4}}
-              source={require('../images/menu/feedback.png')}
+              source={this.state.feedback}
             />
           </TouchableOpacity>
         </View>

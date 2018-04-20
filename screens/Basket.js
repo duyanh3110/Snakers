@@ -29,6 +29,8 @@ export default class Payment extends Component {
 
     this.state = {
       srcCover: require('../images/Basket/payment.png'),
+      status: 'basket',
+      enabel: require('../images/menu/cart-active.png'),
       savedmethod: false,
       international: false,
       domesticLahi: false,
@@ -145,7 +147,11 @@ export default class Payment extends Component {
 
     return (
       <View style={styles.container}>
-        <MenuBar1 srcCover={this.state.srcCover}/>
+        <MenuBar1
+          srcCover={this.state.srcCover}
+          iconEnable={this.state.enabel}
+          iconStatus={this.state.status}
+        />
 
         <ScrollView>
           <ImageBackground

@@ -19,7 +19,9 @@ export default class Menu extends React.Component {
     super(props);
 
     this.state = {
-      srcCover: require('../images/menu/menu-top.png')
+      srcCover: require('../images/menu/menu-top.png'),
+      status: 'menu',
+      enabel: require('../images/menu/menu-active.png')
     };
   }
   render() {
@@ -27,7 +29,11 @@ export default class Menu extends React.Component {
 
     return (
       <View style={styles.container}>
-        <MenuBar1 srcCover={this.state.srcCover}/>
+        <MenuBar1
+          srcCover={this.state.srcCover}
+          iconEnable={this.state.enabel}
+          iconStatus={this.state.status}
+        />
 
         <ScrollView>
           <TouchableOpacity onPress={() => Actions.burger()}>

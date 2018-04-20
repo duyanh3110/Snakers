@@ -22,6 +22,8 @@ export default class Feedback extends Component {
 
     this.state = {
       srcCover: require('../images/feedback/feedback.png'),
+      status: 'feedback',
+      enabel: require('../images/menu/feedback-active.png')
     };
   }
 
@@ -30,7 +32,11 @@ export default class Feedback extends Component {
 
     return (
       <View style={styles.container}>
-        <MenuBar1 srcCover={this.state.srcCover}/>
+        <MenuBar1
+          srcCover={this.state.srcCover}
+          iconEnable={this.state.enabel}
+          iconStatus={this.state.status}
+        />
 
         <ScrollView>
           <ImageBackground

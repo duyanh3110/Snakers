@@ -18,7 +18,9 @@ export default class User extends Component {
     super(props);
 
     this.state = {
-      srcCover: require('../images/user/menu-top.png')
+      srcCover: require('../images/user/menu-top.png'),
+      status: 'user',
+      enabel: require('../images/menu/user-active.png')
     };
   }
 
@@ -27,7 +29,11 @@ export default class User extends Component {
 
     return (
       <View style={styles.container}>
-        <MenuBar1 srcCover={this.state.srcCover}/>
+        <MenuBar1
+          srcCover={this.state.srcCover}
+          iconEnable={this.state.enabel}
+          iconStatus={this.state.status}
+        />
 
         <ScrollView>
           <View style={{
