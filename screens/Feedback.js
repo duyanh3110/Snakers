@@ -11,20 +11,46 @@ import {
   ScrollView,
   ImageBackground,
   TextInput,
+  ListView,
 } from 'react-native';
+
+import Modal from 'react-native-modalbox';
+
+import { firebaseApp } from '../components/FirebaseConfig';
 
 import MenuBar1 from '../components/MenuBar1';
 import ListFoodHorizontal from './ListFoodHorizontal';
+
+import ScreenOrder from './ScreenOrder';
 
 export default class Feedback extends Component {
   constructor(props) {
     super(props);
 
+    this.itemRef = firebaseApp.database();
+
     this.state = {
       srcCover: require('../images/feedback/feedback.png'),
       status: 'feedback',
-      enabel: require('../images/menu/feedback-active.png')
+      enabel: require('../images/menu/feedback-active.png'),
+      Delivery: '',
+      Quality: '',
+      Service: '',
     };
+  }
+
+  // Push feedback into Realtime Database
+  FeedbackDB() {
+    this.itemRef.ref('Feedback').push({
+      Delivery: this.state.Delivery,
+      Quality: this.state.Quality,
+      Service: this.state.Service,
+    });
+    this.setState({
+      Delivery: '',
+      Quality: '',
+      Service: '',
+    })
   }
 
   render() {
@@ -72,6 +98,8 @@ export default class Feedback extends Component {
               How was our delivering service quality ?
             </Text>
             <TextInput
+              onChangeText={(Delivery) => this.setState({Delivery})}
+              value={this.state.Delivery}
               numberOfLines = {4}
               multiline={true}
               edittable={true}
@@ -96,6 +124,8 @@ export default class Feedback extends Component {
               How was our delivering service quality ?
             </Text>
             <TextInput
+              onChangeText={(Quality) => this.setState({Quality})}
+              value={this.state.Quality}
               numberOfLines = {4}
               multiline={true}
               edittable={true}
@@ -120,6 +150,8 @@ export default class Feedback extends Component {
               How was our delivering service quality ?
             </Text>
             <TextInput
+              onChangeText={(Service) => this.setState({Service})}
+              value={this.state.Service}
               numberOfLines = {4}
               multiline={true}
               edittable={true}
@@ -133,6 +165,7 @@ export default class Feedback extends Component {
           </View>
 
           <TouchableOpacity
+            onPress={() => {this.FeedbackDB()}}
             style={{
               marginTop: '5%',
               marginBottom: '5%',
@@ -158,6 +191,7 @@ export default class Feedback extends Component {
             }}
           >
             <TouchableOpacity
+              onPress={() => this.refs.modal2.open()}
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -169,8 +203,24 @@ export default class Feedback extends Component {
               />
             </TouchableOpacity>
           </ImageBackground>
-
         </ScrollView>
+
+        <Modal
+          style={{
+            width: screenWidth - 50,
+            height: 390,
+            borderRadius: 20,
+          }}
+          ref={'modal2'}
+          position={"center"}
+          swipeArea={20}
+        >
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+          >
+            <ScreenOrder />
+          </ScrollView>
+        </Modal>
 
 
 

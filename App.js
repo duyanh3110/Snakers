@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import * as firebase from 'firebase';
 import { Font } from 'expo';
 
-import Routes from './src/Routes';
+import { firebaseApp } from './components/FirebaseConfig';
 
-const config = {
-   apiKey: "AIzaSyBoS0ZYQ3QCFSFV74fJz0w_h8uoFH_BuZM",
-   authDomain: "snackers-9ff5b.firebaseapp.com",
-   databaseURL: "https://snackers-9ff5b.firebaseio.com",
-   projectId: "snackers-9ff5b",
-   storageBucket: "snackers-9ff5b.appspot.com",
-   messagingSenderId: "881940158467"
- };
- firebase.initializeApp(config);
+import Routes from './src/Routes';
 
 export default class App extends React.Component {
   state = {
