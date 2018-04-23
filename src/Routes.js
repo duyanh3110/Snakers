@@ -29,7 +29,7 @@ export default class Routes extends React.Component {
         <Scene key="signin" hideNavBar='true' component={Login} title="LOGIN"/>
         <Scene key="signup" hideNavBar='true' component={Signup} title="NEW ACCOUNT"/>
         <Scene key="home" hideNavBar='true' component={HomePage} title="HOME PAGE"/>
-        <Scene key="menu" hideNavBar='true' type="replace" component={Menu} title="MENU PAGE"/>
+        <Scene key="menu" hideNavBar='true' component={Menu} title="MENU PAGE"/>
         <Scene key="basket" hideNavBar='true' component={Basket} title="BASKET PAGE"/>
         <Scene key="user" hideNavBar='true' component={User} title="USER PAGE"/>
         <Scene key="feedback" hideNavBar='true' component={Feedback} title="FEEDBACK PAGE"/>
