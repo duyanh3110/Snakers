@@ -128,7 +128,7 @@ export default class Basket extends Component {
               </View>
 
               <TouchableOpacity
-                onPress={this.ShowNewAddressView.bind(this)}
+                onPress={this.ShowNewAddress.bind(this)}
               >
                 <ImageBackground
                   source={require('../images/Basket/new-address-1.png')}
