@@ -10,135 +10,49 @@ import {
   TouchableOpacity,
   ScrollView,
   ImageBackground,
+  FlatList,
+  TextInput,
 } from 'react-native';
-
-import SaveMethod from './PaymentPage/save-method';
-import InternationCard from './PaymentPage/international-card';
-import DomesticLahi from './PaymentPage/domesticLahi';
-import DomesticOP from './PaymentPage/domesticOP';
-import DomesticNodr from './PaymentPage/domesticNodr';
-import DomesticSaas from './PaymentPage/domesticSaas';
-import Paypal from './PaymentPage/paypal';
 
 import MenuBar1 from '../components/MenuBar1';
 import CartData from '../data/cartData';
+import Payment from './Payment';
 
-export default class Payment extends Component {
+import BasketFlatListItem from './BasketFlatListItem';
+
+export default class Basket extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      srcCover: require('../images/Basket/payment.png'),
+      srcCover: require('../images/Basket/basket.png'),
       status: 'basket',
       enabel: require('../images/menu/cart-active.png'),
-      savedmethod: false,
-      international: false,
-      domesticLahi: false,
-      domesticOP: false,
-      domesticNodr: false,
-      domesticSaas: false,
-      paypal: false,
+      payment: false,
+      basket: false,
+      address: false,
     };
   }
 
-  ShowSavedMethodView() {
-    if(this.state.savedmethod == false){
-      this.setState({savedmethod: true});
-      this.setState({international: false});
-      this.setState({domesticLahi: false});
-      this.setState({domesticOP: false});
-      this.setState({domesticNodr: false});
-      this.setState({domesticSaas: false});
+  ShowPaymentView() {
+    if(this.state.payment == false){
+      this.setState({payment: true});
+      this.setState({basket: false});
     }
     else {
-      this.setState({savedmethod: false});
+      this.setState({payment: false});
     }
   }
 
-  ShowInternationalCardView() {
-    if(this.state.international == false){
-      this.setState({international: true});
-      this.setState({savedmethod: false});
-      this.setState({domesticLahi: false});
-      this.setState({domesticOP: false});
-      this.setState({domesticNodr: false});
-      this.setState({domesticSaas: false});
+  ShowNewAddress() {
+    if(this.state.address == false) {
+      this.setState({address: true});
     }
     else {
-      this.setState({international: false});
+      this.setState({address: false});
     }
   }
 
-  ShowDomesticLahiView() {
-    if(this.state.domesticLahi == false){
-      this.setState({domesticLahi: true});
-      this.setState({savedmethod: false});
-      this.setState({international: false});
-      this.setState({domesticOP: false});
-      this.setState({domesticNodr: false});
-      this.setState({domesticSaas: false});
-    }
-    else {
-      this.setState({domesticLahi: false});
-    }
-  }
-
-  ShowDomesticOPView() {
-    if(this.state.domesticOP == false){
-      this.setState({domesticOP: true});
-      this.setState({savedmethod: false});
-      this.setState({international: false});
-      this.setState({domesticLahi: false});
-      this.setState({domesticNodr: false});
-      this.setState({domesticSaas: false});
-    }
-    else {
-      this.setState({domesticOP: false});
-    }
-  }
-
-  ShowDomesticNodrView() {
-    if(this.state.domesticNodr == false){
-      this.setState({domesticNodr: true});
-      this.setState({savedmethod: false});
-      this.setState({international: false});
-      this.setState({domesticLahi: false});
-      this.setState({domesticOP: false});
-      this.setState({domesticSaas: false});
-    }
-    else {
-      this.setState({domesticNodr: false});
-    }
-  }
-
-  ShowDomesticSaasView() {
-    if(this.state.domesticSaas == false){
-      this.setState({domesticSaas: true});
-      this.setState({savedmethod: false});
-      this.setState({international: false});
-      this.setState({domesticLahi: false});
-      this.setState({domesticOP: false});
-      this.setState({domesticNodr: false});
-    }
-    else {
-      this.setState({domesticSaas: false});
-    }
-  }
-
-  ShowPaypalView() {
-    if(this.state.paypal == false){
-      this.setState({paypal: true});
-      this.setState({savedmethod: false});
-      this.setState({international: false});
-      this.setState({domesticLahi: false});
-      this.setState({domesticOP: false});
-      this.setState({domesticNodr: false});
-      this.setState({domesticSaas: false});
-    }
-    else {
-      this.setState({paypal: false});
-    }
-  }
 
   render() {
     let screenWidth = Dimensions.get('window').width;
@@ -147,206 +61,216 @@ export default class Payment extends Component {
 
     return (
       <View style={styles.container}>
-        <MenuBar1
-          srcCover={this.state.srcCover}
-          iconEnable={this.state.enabel}
-          iconStatus={this.state.status}
-        />
-
         <ScrollView>
-          <ImageBackground
-            source={require('../images/Basket/saved-img.png')}
+          <MenuBar1
+            srcCover={this.state.srcCover}
+            iconEnable={this.state.enabel}
+            iconStatus={this.state.status}
+          />
+
+          <View
             style={{
-              width: screenWidth,
-              height: screenWidth * 412 / 1080,
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'row',
-              paddingTop: "7%",
+              backgroundColor: 'white',
             }}
           >
-            <View style={{
-              width: "50%",
-              height: "100%",
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-            >
-              <TouchableOpacity onPress={this.ShowSavedMethodView.bind(this)}>
-                <Image
-                  style={{width: screenWidth/6, height: (screenWidth * 192 / 192)/6}}
-                  source={require('../images/Basket/paypal.png')}
-                />
-              </TouchableOpacity>
-            </View>
+            <FlatList
+              data={CartData}
+              renderItem={({item, index}) => {
+                return(
+                  <BasketFlatListItem item={item} index={index} />
+                );
+              }}
+            />
+          </View>
 
-            <View style={{
-              width: "50%",
-              height: "100%",
-              justifyContent: 'center',
-              alignItems: 'center',
+          <View
+            style={{
+              marginLeft: '2%',
+              marginRight: '2%',
+              flexDirection: 'row',
             }}
             >
-              <Text
+              <View
                 style={{
-                  fontFamily: 'open-sans-Bold',
-                  fontSize: 10,
-                  color: 'white',
+                  width: '46%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderWidth: 2,
+                  marginRight: '2%',
                 }}
               >
-                MINHANH.VD31@GMAIL.COM
-              </Text>
+                <Text
+                  style={{
+                    fontFamily: 'open-sans-Bold',
+                    fontSize: 10,
+                  }}
+                >
+                  SAVED ADDRESS
+                </Text>
+
+                <Text
+                  style={{
+                    fontFamily: 'open-sans-Regular',
+                    fontSize: 12,
+                  }}
+                >
+                  Kajaanintie 40 C 21/2
+                </Text>
+
+                <Text
+                  style={{
+                    fontFamily: 'open-sans-Regular',
+                    fontSize: 12,
+                  }}
+                >
+                  90130, Oulu
+                </Text>
+              </View>
+
+              <TouchableOpacity
+                onPress={this.ShowNewAddressView.bind(this)}
+              >
+                <ImageBackground
+                  source={require('../images/Basket/new-address-1.png')}
+                  style={{
+                    width: screenWidth/2,
+                    height: (screenWidth * 220 / 484)/2,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Text style={{
+                    color: 'white',
+                    fontFamily: 'open-sans-Bold',
+                    fontSize: 10,
+                  }}>
+                    NEW ADDRESS
+                  </Text>
+                </ImageBackground>
+              </TouchableOpacity>
             </View>
 
-          </ImageBackground>
+            <View>
+              {
+                this.state.address ?
 
-          <View>
-            {
-              this.state.savedmethod ? <SaveMethod /> : null
-            }
-          </View>
+                  <View style={{
+                    margin: '2%',
+                    justifyContent: 'center',
+                  }}>
+                    <ImageBackground
+                      source={require('../images/Basket/new-address-2.png')}
+                      style={{
+                        width: '100%',
+                        height: 120,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <View style={{
+                        flexDirection: 'column',
+                        width: '50%',
+                        paddingLeft: '2%',
+                      }}>
+                        <TextInput
+                          underlineColorAndroid='transparent'
+                          placeholder='Name'
+                          placeholderTextColor='#999999'
+                          style={{
+                            fontFamily: 'open-sans-Regular',
+                            width: '95%',
+                            marginRight: '2%',
+                            marginBottom: '5%',
+                            borderBottomWidth: 1,
+                            borderColor: 'white',
+                          }}
+                        />
+                        <TextInput
+                          underlineColorAndroid='transparent'
+                          placeholder='Name'
+                          placeholderTextColor='#999999'
+                          style={{
+                            fontFamily: 'open-sans-Regular',
+                            width: '95%',
+                            marginRight: '2%',
+                            marginBottom: '5%',
+                            borderBottomWidth: 1,
+                            borderColor: 'white',
+                          }}
+                        />
+                        <TextInput
+                          underlineColorAndroid='transparent'
+                          placeholder='Name'
+                          placeholderTextColor='#999999'
+                          style={{
+                            fontFamily: 'open-sans-Regular',
+                            width: '95%',
+                            marginRight: '2%',
+                            marginBottom: '5%',
+                            borderBottomWidth: 1,
+                            borderColor: 'white',
+                          }}
+                        />
+                      </View>
 
-          <ImageBackground
-            source={require('../images/Basket/visa-master.png')}
-            style={{
-              width: screenWidth,
-              height: screenWidth * 412 / 1080,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <View style={{
-                width: "65%",
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginTop: '7%'
-            }}
+                      <View
+                        style={{
+                          width: '50%',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <TouchableOpacity
+                          style={{
+                            backgroundColor: 'white',
+                            padding: 10,
+                            width: '80%',
+                            marginLeft: '10%',
+                            marginRight: '10%',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <Text style={{
+                            color: 'black',
+                            fontSize: 10,
+                            fontFamily: 'open-sans-Bold',
+                          }}>
+                            CONFIRM ADDRESS
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+
+
+                    </ImageBackground>
+                  </View>
+
+                 : null
+              }
+            </View>
+
+
+
+            <TouchableOpacity
+              onPress={this.ShowPaymentView.bind(this)}
+              style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+              }}
             >
-              <TouchableOpacity onPress={this.ShowInternationalCardView.bind(this)}>
-                <Image
-                  style={{width: screenWidth/6, height: (screenWidth * 192 / 192)/6}}
-                  source={require('../images/Basket/visa.png')}
-                />
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={this.ShowInternationalCardView.bind(this)}>
-                <Image
-                  style={{width: screenWidth/6, height: (screenWidth * 192 / 192)/6}}
-                  source={require('../images/Basket/master.png')}
-                />
-              </TouchableOpacity>
-            </View>
-
-          </ImageBackground>
-
-          <View>
-            {
-              this.state.international ? <InternationCard /> : null
-            }
-          </View>
-
-          <ImageBackground
-            source={require('../images/Basket/domestic.png')}
-            style={{
-              width: screenWidth,
-              height: screenWidth * 412 / 1080,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <View style={{
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              width: screenWidth,
-              marginTop: "7%",
-            }}
-            >
-              <TouchableOpacity onPress={this.ShowDomesticLahiView.bind(this)}>
-                <Image
-                  style={{width: screenWidth/6, height: (screenWidth * 192 / 192)/6}}
-                  source={require('../images/Basket/Lahitapiola.png')}
-                />
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={this.ShowDomesticOPView.bind(this)}>
-                <Image
-                  style={{width: screenWidth/6, height: (screenWidth * 192 / 192)/6}}
-                  source={require('../images/Basket/op.png')}
-                />
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={this.ShowDomesticNodrView.bind(this)}>
-                <Image
-                  style={{width: screenWidth/6, height: (screenWidth * 192 / 192)/6}}
-                  source={require('../images/Basket/nordea.png')}
-                />
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={this.ShowDomesticSaasView.bind(this)}>
-                <Image
-                  style={{width: screenWidth/6, height: (screenWidth * 192 / 192)/6}}
-                  source={require('../images/Basket/saato.png')}
-                />
-              </TouchableOpacity>
-
-            </View>
-
-          </ImageBackground>
-
-          <View>
-            {
-              this.state.domesticLahi ? <DomesticLahi /> : null
-            }
-          </View>
-
-          <View>
-            {
-              this.state.domesticOP ? <DomesticOP /> : null
-            }
-          </View>
-
-          <View>
-            {
-              this.state.domesticNodr? <DomesticNodr /> : null
-            }
-          </View>
-
-          <View>
-            {
-              this.state.domesticSaas ? <DomesticSaas /> : null
-            }
-          </View>
-
-          <ImageBackground
-            source={require('../images/Basket/paypal-cover.png')}
-            style={{
-              width: screenWidth,
-              height: screenWidth * 412 / 1080,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <TouchableOpacity onPress={this.ShowPaypalView.bind(this)}>
               <Image
-                style={{
-                  width: screenWidth/6,
-                  height: (screenWidth * 192 / 192)/6,
-                  marginTop: "7%",
-                }}
-                source={require('../images/Basket/paypal.png')}
+                style={{width: screenWidth/3, height: (screenWidth * 244 / 462)/3}}
+                source={require('../images/Basket/payment-button.png')}
               />
             </TouchableOpacity>
 
-          </ImageBackground>
+            <View>
+              {
+                this.state.payment ? <Payment /> : null
+              }
+            </View>
 
-          <View>
-            {
-              this.state.paypal ? <Paypal /> : null
-            }
-          </View>
         </ScrollView>
-
-
       </View>
     );
   }
@@ -355,6 +279,6 @@ export default class Payment extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
 });
