@@ -12,6 +12,9 @@ import {
 } from 'react-native';
 
 import MenuBar1 from '../components/MenuBar1';
+import Avatar from '../components/Avatar';
+import * as firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 
 export default class User extends Component {
   constructor(props) {
@@ -22,6 +25,15 @@ export default class User extends Component {
       status: 'user',
       enabel: require('../images/menu/user-active.png')
     };
+  }
+
+  signOut = () => {
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      Actions.popTo('signin')
+    }).catch(function(error) {
+      // An error happened.
+    });
   }
 
   render() {
@@ -36,34 +48,9 @@ export default class User extends Component {
         />
 
         <ScrollView>
-          <View style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'white',
-          }}>
-            <Image
-              style={{width: screenWidth/5, height: (screenWidth * 164 / 164)/5, marginBottom: '2%'}}
-              source={require('../images/user/ava-user.png')}
-            />
-            <Text style={{
-              textAlign: 'center',
-              fontFamily: 'open-sans-Regular',
-              fontSize: 14,
-              marginBottom: '2%',
-            }}>
-              Minh Anh
-            </Text>
-            <Text style={{
-              textAlign: 'center',
-              fontFamily: 'open-sans-Bold',
-              fontSize: 12,
-              marginBottom: '2%',
-            }}>
-              MINHANH.VD31@GMAIL.COM
-            </Text>
-          </View>
+          <Avatar />
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => Actions.editUser()}>
             <Image
               style={{width: screenWidth, height: screenWidth * 413 / 1080}}
               source={require('../images/user/edit-profile.png')}
@@ -81,7 +68,7 @@ export default class User extends Component {
               source={require('../images/user/history.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.signOut}>
             <Image
               style={{width: screenWidth, height: screenWidth * 413 / 1080}}
               source={require('../images/user/signout.png')}

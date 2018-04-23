@@ -15,6 +15,10 @@ import Pizza from '../screens/Pizza';
 import Dessert from '../screens/Dessert';
 import Drink from '../screens/Drink';
 
+import EditUser from '../screens/user/EditUser';
+import PaymentMethod from '../screens/user/PaymentMethod';
+import PreviousBill from '../screens/user/PreviousBill';
+
 import BurgerInfo from '../screens/BurgerInfo';
 
 export default class Routes extends React.Component {
@@ -25,7 +29,7 @@ export default class Routes extends React.Component {
         <Scene key="signin" hideNavBar='true' component={Login} title="LOGIN"/>
         <Scene key="signup" hideNavBar='true' component={Signup} title="NEW ACCOUNT"/>
         <Scene key="home" hideNavBar='true' component={HomePage} title="HOME PAGE"/>
-        <Scene key="menu" hideNavBar='true' component={Menu} title="MENU PAGE"/>
+        <Scene key="menu" hideNavBar='true' type="replace" component={Menu} title="MENU PAGE"/>
         <Scene key="basket" hideNavBar='true' component={Basket} title="BASKET PAGE"/>
         <Scene key="user" hideNavBar='true' component={User} title="USER PAGE"/>
         <Scene key="feedback" hideNavBar='true' component={Feedback} title="FEEDBACK PAGE"/>
@@ -34,6 +38,10 @@ export default class Routes extends React.Component {
         <Scene key="pizza" hideNavBar='true' component={Pizza} title="PIZZA PAGE"/>
         <Scene key="dessert" hideNavBar='true' component={Dessert} title="DESSERT PAGE"/>
         <Scene key="drink" hideNavBar='true' component={Drink} title="DRINK PAGE"/>
+
+        <Scene key="editUser" hideNavBar='true' component={EditUser} title="EDIT USER PAGE"/>
+        <Scene key="paymentMethod" hideNavBar='true' component={PaymentMethod} title="PAYMENT METHOD PAGE"/>
+        <Scene key="previousBill" hideNavBar='true' component={PreviousBill} title="PREVIOUS BILL PAGE"/>
 
         <Scene key="modalDetail" hideNavBar='true' component={BurgerInfo} title="MODAL DETAIL"/>
       </Stack>
