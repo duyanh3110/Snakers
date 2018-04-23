@@ -39,7 +39,7 @@ export default class FormSignin extends React.Component {
   }
 
   signup = () => {
-    Actions.home()
+    Actions.popTo('home')
   };
 
   render() {

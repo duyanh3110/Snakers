@@ -31,7 +31,7 @@ export default class FormSignup extends React.Component {
           user.updateProfile({
             displayName: username
           }).then(function() {
-            alert(user.displayName)
+            Actions.home()
           }, function(error) {
             alert(error.toString())
             return;
