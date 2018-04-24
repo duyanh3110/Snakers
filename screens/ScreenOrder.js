@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { firebaseApp } from '../components/FirebaseConfig';
-
+console.disableYellowBox = true;
 export default class ScreenOrder extends Component {
   constructor(props) {
     super(props);
