@@ -378,7 +378,11 @@ export default class EditUser extends Component {
             </Text>
 
             <TextInput
-              onChangeText={(name) => this.setState({name})}
+              onChangeText={val => {
+                this.setState({
+                  name: val
+                });
+              }}
               value={this.state.name}
               underlineColorAndroid='transparent'
               placeholder='Name'
