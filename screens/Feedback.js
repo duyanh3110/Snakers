@@ -185,7 +185,7 @@ export default class Feedback extends Component {
               height: screenWidth * 114 / 1080,
               justifyContent: 'center',
               alignItems: 'center',
-              marginBottom: '10%',
+              marginBottom: '8%',
               marginTop: '5%',
             }}
           >
@@ -202,6 +202,31 @@ export default class Feedback extends Component {
               />
             </TouchableOpacity>
           </ImageBackground>
+          <View
+            style={{
+              marginBottom: '5%'
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: 'open-sans-Regular',
+                fontSize: 12,
+                textAlign: 'center',
+              }}
+            >
+            <Text style={{fontFamily: 'open-sans-Bold'}}>snackers.contact</Text>
+              @gmail.com
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'open-sans-Regular',
+                fontSize: 12,
+                textAlign: 'center',
+              }}
+            >
+              +358 0123 456
+            </Text>
+          </View>
         </ScrollView>
 
         <Modal
@@ -220,9 +245,6 @@ export default class Feedback extends Component {
             <ScreenOrder />
           </ScrollView>
         </Modal>
-
-
-
       </View>
     );
   }

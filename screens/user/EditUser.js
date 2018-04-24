@@ -29,7 +29,7 @@ export default class EditUser extends Component {
       enabel: require('../../images/menu/user-active.png'),
       name: '',
       email: '',
-      phoneNum: '0449281545',
+      phoneNum: '0403242696',
       address: 'Kajaanintie 40 C 21/2 90130, Oulu'
     };
   }
@@ -40,14 +40,39 @@ export default class EditUser extends Component {
       this.setState({
         name : user.displayName,
         email : user.email,
-        phoneNum : user.phoneNumber
+        //phoneNum : user.phoneNumber
       });
     }
     console.log(user);
   }
 
   CloseNameModal() {
+    let user = firebase.auth().currentUser;
+    user.updateProfile({
+      displayName: this.state.name
+    }).then(function() {
+      // Update successful.
+      console.log(user);
+    }).catch(function(error) {
+      // An error happened.
+      console.log(error);
+    });
     this.refs.modalname.close();
+    this.refs.successuser.open();
+  }
+
+  phoneNumberSubmit = () => {
+    let user = firebase.auth().currentUser;
+    user.updateProfile({
+      phoneNumber: this.state.phoneNum
+    }).then(function() {
+      // Update successful.
+      console.log(user.phoneNumber);
+    }).catch(function(error) {
+      // An error happened.
+      console.log(error);
+    });
+    this.refs.modalphone.close();
     this.refs.successuser.open();
   }
 
@@ -158,7 +183,7 @@ export default class EditUser extends Component {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={ ()=>this.refs.modalphone.open()} >
             <View
               style={{
                 backgroundColor: 'white',
@@ -373,6 +398,7 @@ export default class EditUser extends Component {
               fontFamily: 'open-sans-Bold',
               fontSize: 12,
               color: '#aeb5bf',
+              marginBottom: '2%'
             }}>
               NAME
             </Text>
@@ -399,12 +425,75 @@ export default class EditUser extends Component {
 
           <View
             style={{
-              marginTop: '10%',
+              marginTop: '20%',
               alignItems: 'center',
             }}
           >
             <TouchableOpacity
               onPress= {this.CloseNameModal.bind(this)}
+            >
+              <Image
+                style={{width: screenWidth/2, height: (screenWidth * 103/457)/2}}
+                source={require('../../images/user/update-btn.png')}
+              />
+            </TouchableOpacity>
+          </View>
+        </Modal>
+
+        <Modal
+          style={{
+            width: screenWidth - 50,
+            height: 300,
+            borderRadius: 20,
+            justifyContent: 'center',
+          }}
+          ref={'modalphone'}
+          position={"center"}
+          swipeArea={20}
+        >
+          <View
+            style={{
+              marginLeft: '10%',
+              marginRight: '10%',
+            }}
+          >
+            <Text style={{
+              fontFamily: 'open-sans-Bold',
+              fontSize: 12,
+              color: '#aeb5bf',
+              marginBottom: '2%'
+            }}>
+              PHONE NUMBER
+            </Text>
+
+            <TextInput
+              onChangeText={val => {
+                this.setState({
+                  phoneNum: val
+                });
+              }}
+              value={this.state.phoneNum}
+              underlineColorAndroid='transparent'
+              placeholder='+385 0123 456'
+              placeholderTextColor='#999999'
+              style={{
+                fontFamily: 'open-sans-Regular',
+                fontSize: 16,
+                width: '100%',
+                borderBottomWidth: 2,
+                borderBottomColor: 'black'
+              }}
+            />
+          </View>
+
+          <View
+            style={{
+              marginTop: '20%',
+              alignItems: 'center',
+            }}
+          >
+            <TouchableOpacity
+              onPress= {this.phoneNumberSubmit.bind(this)}
             >
               <Image
                 style={{width: screenWidth/2, height: (screenWidth * 103/457)/2}}
