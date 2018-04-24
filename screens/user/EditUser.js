@@ -9,7 +9,10 @@ import {
   Dimensions,
   TouchableOpacity,
   ScrollView,
+  TextInput,
 } from 'react-native';
+
+import Modal from 'react-native-modalbox';
 
 import MenuBar1 from '../../components/MenuBar1';
 import Avatar from '../../components/Avatar';
@@ -23,8 +26,15 @@ export default class EditUser extends Component {
     this.state = {
       srcCover: require('../../images/user/menu-top.png'),
       status: 'user',
-      enabel: require('../../images/menu/user-active.png')
+      enabel: require('../../images/menu/user-active.png'),
+      name: 'Minh Anh',
+
     };
+  }
+
+  CloseNameModal() {
+    this.refs.modalname.close();
+    this.refs.successuser.open();
   }
 
   render() {
@@ -84,7 +94,9 @@ export default class EditUser extends Component {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={ ()=>this.refs.modalname.open() }
+          >
             <View
               style={{
                 backgroundColor: 'white',
@@ -114,7 +126,7 @@ export default class EditUser extends Component {
                   fontFamily: 'open-sans-Regular',
                   fontSize: 16,
                 }}>
-                  Minh Anh
+                  {this.state.name}
                 </Text>
               </View>
 
@@ -325,6 +337,108 @@ export default class EditUser extends Component {
             </View>
           </TouchableOpacity>
         </ScrollView>
+
+        <Modal
+          style={{
+            width: screenWidth - 50,
+            height: 300,
+            borderRadius: 20,
+            justifyContent: 'center',
+          }}
+          ref={'modalname'}
+          position={"center"}
+          swipeArea={20}
+        >
+          <View
+            style={{
+              marginLeft: '10%',
+              marginRight: '10%',
+            }}
+          >
+            <Text style={{
+              fontFamily: 'open-sans-Bold',
+              fontSize: 12,
+              color: '#aeb5bf',
+            }}>
+              NAME
+            </Text>
+
+            <TextInput
+              onChangeText={(name) => this.setState({name})}
+              value={this.state.name}
+              underlineColorAndroid='transparent'
+              placeholder='Name'
+              placeholderTextColor='#999999'
+              style={{
+                fontFamily: 'open-sans-Regular',
+                fontSize: 16,
+                width: '100%',
+                borderBottomWidth: 2,
+                borderBottomColor: 'black'
+              }}
+            />
+          </View>
+
+          <View
+            style={{
+              marginTop: '10%',
+              alignItems: 'center',
+            }}
+          >
+            <TouchableOpacity
+              onPress= {this.CloseNameModal.bind(this)}
+            >
+              <Image
+                style={{width: screenWidth/2, height: (screenWidth * 103/457)/2}}
+                source={require('../../images/user/update-btn.png')}
+              />
+            </TouchableOpacity>
+          </View>
+        </Modal>
+
+        <Modal
+          style={{
+            width: screenWidth - 50,
+            height: 300,
+            borderRadius: 20,
+            paddingTop: '10%',
+            alignItems: 'center',
+          }}
+          ref={'successuser'}
+          position={"center"}
+          swipeArea={21}
+        >
+          <Image
+            style={{
+              width: 50,
+              height: 50,
+            }}
+            source={require('../../images/Basket/done-tick.png')}
+          />
+
+          <View style={{
+            marginTop: '10%',
+          }}>
+            <Text style={{
+              fontFamily: 'open-sans-Regular',
+              fontSize: 14,
+            }}>
+              Setting saved
+            </Text>
+          </View>
+
+          <TouchableOpacity onPress={() => this.refs.successuser.close()}>
+            <Image
+              style={{
+                width: screenWidth/2,
+                height: (screenWidth * 103/457)/2,
+                marginTop: '10%',
+              }}
+              source={require('../../images/Basket/done-btn.png')}
+            />
+
+          </TouchableOpacity>
+        </Modal>
       </View>
     );
   }
