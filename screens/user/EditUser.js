@@ -46,9 +46,29 @@ export default class EditUser extends Component {
     console.log(user);
   }
 
-  CloseNameModal() {
+  changeNameHandler = val => {
+    this.setState({
+      name: val
+    });
+  }
+
+  openModalSuccess = () => {
     this.refs.modalname.close();
     this.refs.successuser.open();
+  }
+
+  CloseNameModal() {
+    let user = firebase.auth().currentUser;
+    user.updateProfile({
+      displayName: this.state.name
+    }).then(function() {
+      // Update successful.
+      console.log(user);
+    }).catch(function(error) {
+      // An error happened.
+      console.log(error);
+    });
+    this.openModalSuccess();
   }
 
   render() {
@@ -378,11 +398,7 @@ export default class EditUser extends Component {
             </Text>
 
             <TextInput
-              onChangeText={val => {
-                this.setState({
-                  name: val
-                });
-              }}
+              onChangeText={this.changeNameHandler}
               value={this.state.name}
               underlineColorAndroid='transparent'
               placeholder='Name'
