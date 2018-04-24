@@ -27,9 +27,23 @@ export default class EditUser extends Component {
       srcCover: require('../../images/user/menu-top.png'),
       status: 'user',
       enabel: require('../../images/menu/user-active.png'),
-      name: 'Minh Anh',
-
+      name: '',
+      email: '',
+      phoneNum: '0449281545',
+      address: 'Kajaanintie 40 C 21/2 90130, Oulu'
     };
+  }
+
+  componentWillMount() {
+    let user = firebase.auth().currentUser;
+      if (user != null) {
+      this.setState({
+        name : user.displayName,
+        email : user.email,
+        phoneNum : user.phoneNumber
+      });
+    }
+    console.log(user);
   }
 
   CloseNameModal() {
@@ -174,7 +188,7 @@ export default class EditUser extends Component {
                   fontFamily: 'open-sans-Regular',
                   fontSize: 16,
                 }}>
-                  0449281545
+                  {this.state.phoneNum}
                 </Text>
               </View>
 
@@ -222,7 +236,7 @@ export default class EditUser extends Component {
                   fontFamily: 'open-sans-Regular',
                   fontSize: 16,
                 }}>
-                  minhanh.vd31@gmail.com
+                  {this.state.email}
                 </Text>
               </View>
 
@@ -270,7 +284,7 @@ export default class EditUser extends Component {
                   fontFamily: 'open-sans-Regular',
                   fontSize: 16,
                 }}>
-                  Ylioppilaantie 8B 29, Oulu
+                  {this.state.address}
                 </Text>
               </View>
 
