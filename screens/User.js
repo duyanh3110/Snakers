@@ -56,13 +56,13 @@ export default class User extends Component {
               source={require('../images/user/edit-profile.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => Actions.paymentMethod()}>
             <Image
               style={{width: screenWidth, height: screenWidth * 413 / 1080}}
               source={require('../images/user/payment-method.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => Actions.previousBill()}>
             <Image
               style={{width: screenWidth, height: screenWidth * 413 / 1080}}
               source={require('../images/user/history.png')}
