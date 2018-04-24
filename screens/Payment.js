@@ -21,6 +21,8 @@ import DomesticSaas from './PaymentPage/domesticSaas';
 import Paypal from './PaymentPage/paypal';
 import Basket from './Basket';
 
+import Modal from "react-native-modalbox";
+
 import MenuBar1 from '../components/MenuBar1';
 
 export default class Payment extends Component {
@@ -198,7 +200,26 @@ export default class Payment extends Component {
 
           <View>
             {
-              this.state.savedmethod ? <SaveMethod /> : null
+              this.state.savedmethod ?
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <SaveMethod />
+                <TouchableOpacity onPress={() => this.refs.modal3.open()}>
+                  <Image
+                    style={{
+                      width: screenWidth/2,
+                      height: (screenWidth * 103 / 457)/2,
+                      marginTop: "5%",
+                      marginBottom: "10%",
+                    }}
+                    source={require('../images/Basket/place-order.png')}
+                  />
+                </TouchableOpacity>
+              </View> : null
             }
           </View>
 
@@ -342,6 +363,51 @@ export default class Payment extends Component {
           </View>
         </ScrollView>
 
+
+        <Modal
+          style={{
+            width: screenWidth - 50,
+            height: 250,
+            borderRadius: 20,
+            paddingTop: '10%',
+            alignItems: 'center',
+          }}
+          ref={'modal3'}
+          position={"center"}
+          entry={"top"}
+          swipeArea={21}
+        >
+          <Image
+            style={{
+              width: 50,
+              height: 50,
+            }}
+            source={require('../images/Basket/done-tick.png')}
+          />
+
+          <View style={{
+            marginTop: '10%',
+          }}>
+            <Text style={{
+              fontFamily: 'open-sans-Regular',
+              fontSize: 14,
+            }}>
+              Order Successfully Placed
+            </Text>
+          </View>
+
+          <TouchableOpacity onPress={() => this.refs.modal3.close()}>
+            <Image
+              style={{
+                width: screenWidth/2,
+                height: (screenWidth * 103/457)/2,
+                marginTop: '10%',
+              }}
+              source={require('../images/Basket/done-btn.png')}
+            />
+
+          </TouchableOpacity>
+        </Modal>
 
       </View>
     );
