@@ -28,6 +28,8 @@ export default class Basket extends Component {
       srcCover: require('../images/Basket/basket.png'),
       status: 'basket',
       enabel: require('../images/menu/cart-active.png'),
+      currentCart: CartData,
+      totalPrice: 0,
       payment: false,
       basket: false,
       address: false,
@@ -53,12 +55,21 @@ export default class Basket extends Component {
     }
   }
 
+  removeItemHandler = key => {
+    CartData.find(item => {
+      if (item.key === key) {
+        let itemPosition = CartData.indexOf(item);
+        CartData.splice(itemPosition, 1);
+        this.setState({
+          currentCart: CartData
+        });
+        console.log(this.state.currentCart.length);
+      }
+    });
+  }
 
   render() {
     let screenWidth = Dimensions.get('window').width;
-
-    console.log(CartData);
-
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -73,14 +84,24 @@ export default class Basket extends Component {
               backgroundColor: 'white',
             }}
           >
-            <FlatList
-              data={CartData}
-              renderItem={({item, index}) => {
-                return(
-                  <BasketFlatListItem item={item} index={index} />
-                );
-              }}
-            />
+            {
+              this.state.currentCart.length > 0?
+              <FlatList
+                data={this.state.currentCart}
+                renderItem={({item, index}) => {
+                  return(
+                    <BasketFlatListItem
+                      item={item}
+                      index={index}
+                      removeItem={this.removeItemHandler}
+                    />
+                  );
+                }}
+              />
+
+            : <Text>Cart is empty!</Text>
+            }
+
           </View>
 
           <View

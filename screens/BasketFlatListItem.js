@@ -11,12 +11,43 @@ import {
 } from 'react-native';
 
 class BasketFlatListItem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      key: this.props.item.key,
+      amount: this.props.item.amount,
+      price: this.props.item.price,
+      name: this.props.item.name.toUpperCase(),
+      finalPrice: 0
+    };
+  }
+
+  componentWillMount() {
+    this.state.finalPrice = this.state.amount * this.state.price;
+  }
+
+  increaseAmount = () => {
+    let newAmount = this.state.amount++;
+    this.setState({
+      amount: newAmount + 1,
+      finalPrice: this.state.amount*this.state.price
+    });
+  }
+
+  decreaseAmount = () => {
+    let newAmount = this.state.amount--;
+    this.setState({
+      amount: newAmount - 1,
+      finalPrice: this.state.amount*this.state.price
+    });
+    if (this.state.amount == 0) {
+      this.props.removeItem(this.state.key);
+    }
+    //console.log(this.state.amount);
+  }
 
   render() {
-    let Amount = this.props.item.amount;
-    let Price = this.props.item.price;
-    let NameFood = this.props.item.name.toUpperCase();
-    let FinalPrice = Amount * Price;
     let screenWidth = Dimensions.get('window').width;
 
     return (
@@ -61,7 +92,7 @@ class BasketFlatListItem extends Component {
               fontSize: 10,
             }}
           >
-            {NameFood}
+            {this.state.name}
           </Text>
         </View>
 
@@ -81,7 +112,7 @@ class BasketFlatListItem extends Component {
                 alignItems: 'center',
               }}
             >
-              <TouchableOpacity>
+              <TouchableOpacity onPress={this.decreaseAmount}>
                 <Image
                   style={{width: screenWidth/20, height: (screenWidth * 45 / 45)/20}}
                   source={require('../images/Basket/minus-white.png')}
@@ -95,10 +126,10 @@ class BasketFlatListItem extends Component {
                   fontSize: 18,
                 }}
               >
-                {this.props.item.amount}
+                {this.state.amount}
               </Text>
 
-              <TouchableOpacity>
+              <TouchableOpacity onPress={this.increaseAmount}>
                 <Image
                   style={{width: screenWidth/20, height: (screenWidth * 45 / 45)/20}}
                   source={require('../images/Basket/plus-white.png')}
@@ -121,7 +152,7 @@ class BasketFlatListItem extends Component {
                   fontSize: 18,
                 }}
               >
-                {FinalPrice} €
+                {this.state.finalPrice} €
               </Text>
             </View>
         </View>
