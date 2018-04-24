@@ -425,7 +425,7 @@ export default class EditUser extends Component {
 
           <View
             style={{
-              marginTop: '10%',
+              marginTop: '20%',
               alignItems: 'center',
             }}
           >
@@ -488,7 +488,7 @@ export default class EditUser extends Component {
 
           <View
             style={{
-              marginTop: '10%',
+              marginTop: '20%',
               alignItems: 'center',
             }}
           >
