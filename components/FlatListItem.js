@@ -122,8 +122,8 @@ export default class FlatListItem extends Component {
               }}>
                 <Image
                   style={{
-                    width: 17,
-                    height: 17,
+                    width: 22,
+                    height: 22,
                   }}
                   source={require('../images/rating/cart.png')}
                 />

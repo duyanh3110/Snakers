@@ -33,6 +33,7 @@ class BasketFlatListItem extends Component {
       amount: newAmount + 1,
       finalPrice: this.state.amount*this.state.price
     });
+    //this.props.callBackPrice(this.state.price);
   }
 
   decreaseAmount = () => {
@@ -44,6 +45,7 @@ class BasketFlatListItem extends Component {
     if (this.state.amount == 0) {
       this.props.removeItem(this.props.item.key);
     }
+    console.log(-this.state.price);
     //console.log(this.state.amount);
   }
 
