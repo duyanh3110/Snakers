@@ -28,6 +28,17 @@ export default class DomesticLahi extends Component {
           source={require('../../images/Basket/BankButton/lahi.png')}
         />
         <SaveMethod />
+        <TouchableOpacity>
+          <Image
+            style={{
+              width: screenWidth/2,
+              height: (screenWidth * 103 / 457)/2,
+              marginTop: "5%",
+              marginBottom: "10%",
+            }}
+            source={require('../../images/Basket/place-order.png')}
+          />
+        </TouchableOpacity>
       </View>
     );
   }

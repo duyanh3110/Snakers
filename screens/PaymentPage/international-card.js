@@ -51,7 +51,7 @@ export default class InternationCard extends Component {
             <TextInput
             style={{
               height: 40,
-              width: "41%", 
+              width: "41%",
               borderBottomColor: 'black',
               textAlign: 'center',
               fontFamily: 'open-sans-Regular',
@@ -64,6 +64,21 @@ export default class InternationCard extends Component {
         </View>
 
         <SaveMethod />
+        <TouchableOpacity
+          style={{
+            alignItems: 'center',
+          }}
+        >
+          <Image
+            style={{
+              width: screenWidth/2,
+              height: (screenWidth * 103 / 457)/2,
+              marginTop: "5%",
+              marginBottom: "10%",
+            }}
+            source={require('../../images/Basket/place-order.png')}
+          />
+        </TouchableOpacity>
       </View>
     );
   }
