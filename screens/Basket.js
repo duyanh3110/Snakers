@@ -327,18 +327,22 @@ export default class Basket extends Component {
               </Text>
             </ImageBackground>
 
-            <TouchableOpacity
-              onPress={this.ShowPaymentView.bind(this)}
-              style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-              }}
-            >
-              <Image
-                style={{width: screenWidth/3, height: (screenWidth * 244 / 462)/3}}
-                source={require('../images/Basket/payment-button.png')}
-              />
-            </TouchableOpacity>
+            {
+              this.state.currentCart.length > 0?
+              <TouchableOpacity
+                onPress={this.ShowPaymentView.bind(this)}
+                style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+              >
+                <Image
+                  style={{width: screenWidth/3, height: (screenWidth * 244 / 462)/3}}
+                  source={require('../images/Basket/payment-button.png')}
+                />
+              </TouchableOpacity>
+              :null
+            }
 
             <View>
               {
