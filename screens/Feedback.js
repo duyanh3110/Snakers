@@ -22,7 +22,7 @@ import MenuBar1 from '../components/MenuBar1';
 import ListFoodHorizontal from './ListFoodHorizontal';
 
 import ScreenOrder from './ScreenOrder';
-
+console.disableYellowBox = true;
 export default class Feedback extends Component {
   constructor(props) {
     super(props);
