@@ -38,7 +38,6 @@ export default class EditUser extends Component {
           iconStatus={this.state.status}
         />
 
-        // Avatar
         <View
           style={{
             alignItems: 'center',
@@ -80,7 +79,6 @@ export default class EditUser extends Component {
           </TouchableOpacity>
         </View>
 
-        // Name
         <TouchableOpacity>
           <View
             style={{
@@ -129,7 +127,6 @@ export default class EditUser extends Component {
           </View>
         </TouchableOpacity>
 
-        // Phone
         <TouchableOpacity>
           <View
             style={{
@@ -178,7 +175,6 @@ export default class EditUser extends Component {
           </View>
         </TouchableOpacity>
 
-        // Email
         <TouchableOpacity>
           <View
             style={{
@@ -227,7 +223,6 @@ export default class EditUser extends Component {
           </View>
         </TouchableOpacity>
 
-        // Password
         <TouchableOpacity>
           <View
             style={{
