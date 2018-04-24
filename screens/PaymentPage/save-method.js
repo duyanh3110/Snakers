@@ -38,26 +38,23 @@ export default class SaveMethod extends Component {
               fontFamily: 'open-sans-Regular',
               fontSize: 20
             }}>
-              31.1 €
+              {this.props.totalPrice} €
             </Text>
           </ImageBackground>
 
-          <Text style={{
-            textAlign: 'center',
-            fontFamily: 'open-sans-Regular',
-            fontSize: 14
-          }}>
-            Kajaanintie 40 C 21/2
-          </Text>
-          <Text style={{
-            textAlign: 'center',
-            fontFamily: 'open-sans-Regular',
-            fontSize: 14
-          }}>
-            90130, Oulu
-          </Text>
+          <View style={{
+              paddingLeft: '30%',
+              paddingRight: '30%'
+            }}>
+            <Text style={{
+              textAlign: 'center',
+              fontFamily: 'open-sans-Regular',
+              fontSize: 14
+            }}>
+              {this.props.newAddress}
+            </Text>
+          </View>
 
-          
         </View>
       </View>
 

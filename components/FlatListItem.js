@@ -19,7 +19,8 @@ export default class FlatListItem extends Component {
 
     this.state = {
       itemInfo: this.props.item,
-      itemData: []
+      itemData: [],
+      click: false
     };
   }
 
@@ -118,15 +119,35 @@ export default class FlatListItem extends Component {
               />
             <TouchableOpacity onPress={() => {
                 this.props.dataCallback(this.state.itemInfo.key);
-                //console.log(this.state.itemInfo);
+                this.setState({
+                  click: true
+                });
+                setTimeout(() => {
+                  this.setState({
+                    click: false
+                  });
+                }, 800)
+                console.log(this.state.click);
               }}>
-                <Image
-                  style={{
-                    width: 22,
-                    height: 22,
-                  }}
-                  source={require('../images/rating/cart.png')}
-                />
+                {
+                  this.state.click == false?
+                  <Image
+                    style={{
+                      width: 22,
+                      height: 22,
+                    }}
+                    source={require('../images/rating/cart.png')}
+                  />
+                  :
+                  <Image
+                    style={{
+                      width: 22,
+                      height: 22,
+                    }}
+                    source={require('../images/rating/checked.png')}
+                  />
+                }
+
               </TouchableOpacity>
             </View>
           </View>

@@ -27,7 +27,10 @@ export default class DomesticOP extends Component {
           style={{width: screenWidth/2, height: (screenWidth * 150 / 473)/2}}
           source={require('../../images/Basket/BankButton/OP.png')}
         />
-        <SaveMethod />
+        <SaveMethod
+          totalPrice={this.props.raichuPrice}
+          newAddress={this.props.raichuAddress}
+        />
         <TouchableOpacity>
           <Image
             style={{

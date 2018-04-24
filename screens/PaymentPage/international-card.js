@@ -63,7 +63,10 @@ export default class InternationCard extends Component {
           </View>
         </View>
 
-        <SaveMethod />
+        <SaveMethod
+          totalPrice={this.props.raichuPrice}
+          newAddress={this.props.raichuAddress}
+        />
         <TouchableOpacity
           style={{
             alignItems: 'center',
