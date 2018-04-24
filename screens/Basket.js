@@ -33,6 +33,7 @@ export default class Basket extends Component {
       payment: false,
       basket: false,
       address: false,
+      newAddress: 'Kajaanintie 40 C 21/2 90130, Oulu'
     };
   }
 
@@ -55,6 +56,28 @@ export default class Basket extends Component {
     }
   }
 
+  componentWillMount() {
+    for (var i = 0; i < CartData.length; i++) {
+      let itemTotalPrice = 0;
+      itemTotalPrice = CartData[i].price*CartData[i].amount;
+      //console.log(itemTotalPrice);
+      this.state.totalPrice += itemTotalPrice;
+    }
+  }
+
+  addressChangedHandler = val => {
+    this.setState({
+      newAddress: val
+    });
+  }
+
+  changeSubmitHandler = () => {
+    if (this.state.newAddress.trim() === "") {
+      return;
+    }
+    console.log(this.state.newAddress);
+  }
+
   removeItemHandler = key => {
     CartData.find(item => {
       if (item.key === key) {
@@ -65,6 +88,13 @@ export default class Basket extends Component {
         });
         console.log(this.state.currentCart.length);
       }
+    });
+  }
+
+  calculateTotalPrice = price => {
+    let newPrice = this.state.totalPrice + price;
+    this.setState({
+      totalPrice: newPrice
     });
   }
 
@@ -94,6 +124,7 @@ export default class Basket extends Component {
                       item={item}
                       index={index}
                       removeItem={this.removeItemHandler}
+                      callBackPrice={this.calculateTotalPrice}
                     />
                   );
                 }}
@@ -124,6 +155,8 @@ export default class Basket extends Component {
                   alignItems: 'center',
                   borderWidth: 2,
                   marginRight: '2%',
+                  paddingRight: '5%',
+                  paddingLeft: '5%',
                 }}
               >
                 <Text
@@ -135,23 +168,17 @@ export default class Basket extends Component {
                   SAVED ADDRESS
                 </Text>
 
-                <Text
-                  style={{
-                    fontFamily: 'open-sans-Regular',
-                    fontSize: 12,
-                  }}
-                >
-                  Kajaanintie 40 C 21/2
-                </Text>
 
                 <Text
                   style={{
                     fontFamily: 'open-sans-Regular',
                     fontSize: 12,
+                    textAlign: 'center',
                   }}
                 >
-                  90130, Oulu
+                  {this.state.newAddress}
                 </Text>
+
               </View>
 
               <TouchableOpacity
@@ -211,11 +238,12 @@ export default class Basket extends Component {
                             marginBottom: '5%',
                             borderBottomWidth: 1,
                             borderColor: 'white',
+                            color: 'white'
                           }}
                         />
                         <TextInput
                           underlineColorAndroid='transparent'
-                          placeholder='Name'
+                          placeholder='Phone number'
                           placeholderTextColor='#999999'
                           style={{
                             fontFamily: 'open-sans-Regular',
@@ -224,11 +252,13 @@ export default class Basket extends Component {
                             marginBottom: '5%',
                             borderBottomWidth: 1,
                             borderColor: 'white',
+                            color: 'white'
                           }}
                         />
                         <TextInput
+                          onChangeText={this.addressChangedHandler}
                           underlineColorAndroid='transparent'
-                          placeholder='Name'
+                          placeholder='Address'
                           placeholderTextColor='#999999'
                           style={{
                             fontFamily: 'open-sans-Regular',
@@ -237,6 +267,7 @@ export default class Basket extends Component {
                             marginBottom: '5%',
                             borderBottomWidth: 1,
                             borderColor: 'white',
+                            color: 'white'
                           }}
                         />
                       </View>
@@ -248,6 +279,7 @@ export default class Basket extends Component {
                         }}
                       >
                         <TouchableOpacity
+                          onPress={this.changeSubmitHandler}
                           style={{
                             backgroundColor: 'white',
                             padding: 10,
@@ -276,7 +308,24 @@ export default class Basket extends Component {
               }
             </View>
 
-
+            <ImageBackground
+              style={{
+                width: screenWidth,
+                height: (screenWidth * 114 / 1080),
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: "2%",
+                marginTop: '5%',
+              }}
+              source={require('../images/Basket/line.png')}
+            >
+              <Text style={{
+                fontFamily: 'open-sans-Regular',
+                fontSize: 20
+              }}>
+                {this.state.totalPrice} €
+              </Text>
+            </ImageBackground>
 
             <TouchableOpacity
               onPress={this.ShowPaymentView.bind(this)}
@@ -293,7 +342,11 @@ export default class Basket extends Component {
 
             <View>
               {
-                this.state.payment ? <Payment /> : null
+                this.state.payment ?
+                <Payment
+                  pikachuPrice={this.state.totalPrice}
+                  pikachuAddress={this.state.newAddress}
+                /> : null
               }
             </View>
 

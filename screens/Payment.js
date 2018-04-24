@@ -12,6 +12,8 @@ import {
   ImageBackground,
 } from 'react-native';
 
+import * as firebase from 'firebase';
+
 import SaveMethod from './PaymentPage/save-method';
 import InternationCard from './PaymentPage/international-card';
 import DomesticLahi from './PaymentPage/domesticLahi';
@@ -37,6 +39,7 @@ export default class Payment extends Component {
       domesticNodr: false,
       domesticSaas: false,
       paypal: false,
+      email: '',
     };
   }
 
@@ -139,6 +142,16 @@ export default class Payment extends Component {
     }
   }
 
+  componentWillMount() {
+    let user = firebase.auth().currentUser;
+      if (user != null) {
+      this.setState({
+        email : user.email
+      });
+    }
+    console.log(user);
+  }
+
   render() {
     let screenWidth = Dimensions.get('window').width;
 
@@ -192,7 +205,7 @@ export default class Payment extends Component {
                   color: 'white',
                 }}
               >
-                MINHANH.VD31@GMAIL.COM
+                {this.state.email.toUpperCase()}
               </Text>
             </View>
 
@@ -207,7 +220,10 @@ export default class Payment extends Component {
                   alignItems: 'center',
                 }}
               >
-                <SaveMethod />
+                <SaveMethod
+                  totalPrice={this.props.pikachuPrice}
+                  newAddress={this.props.pikachuAddress}
+                />
                 <TouchableOpacity onPress={() => this.refs.modal3.open()}>
                   <Image
                     style={{
@@ -258,7 +274,11 @@ export default class Payment extends Component {
 
           <View>
             {
-              this.state.international ? <InternationCard /> : null
+              this.state.international ?
+              <InternationCard
+                raichuPrice={this.props.pikachuPrice}
+                raichuAddress={this.props.pikachuAddress}
+              /> : null
             }
           </View>
 
@@ -312,25 +332,41 @@ export default class Payment extends Component {
 
           <View>
             {
-              this.state.domesticLahi ? <DomesticLahi /> : null
+              this.state.domesticLahi ?
+              <DomesticLahi
+                raichuPrice={this.props.pikachuPrice}
+                raichuAddress={this.props.pikachuAddress}
+              /> : null
             }
           </View>
 
           <View>
             {
-              this.state.domesticOP ? <DomesticOP /> : null
+              this.state.domesticOP ?
+              <DomesticOP
+                raichuPrice={this.props.pikachuPrice}
+                raichuAddress={this.props.pikachuAddress}
+              /> : null
             }
           </View>
 
           <View>
             {
-              this.state.domesticNodr? <DomesticNodr /> : null
+              this.state.domesticNodr?
+              <DomesticNodr
+                raichuPrice={this.props.pikachuPrice}
+                raichuAddress={this.props.pikachuAddress}
+              /> : null
             }
           </View>
 
           <View>
             {
-              this.state.domesticSaas ? <DomesticSaas /> : null
+              this.state.domesticSaas ?
+              <DomesticSaas
+                raichuPrice={this.props.pikachuPrice}
+                raichuAddress={this.props.pikachuAddress}
+              /> : null
             }
           </View>
 
@@ -358,7 +394,11 @@ export default class Payment extends Component {
 
           <View>
             {
-              this.state.paypal ? <Paypal /> : null
+              this.state.paypal ?
+              <Paypal
+                raichuPrice={this.props.pikachuPrice}
+                raichuAddress={this.props.pikachuAddress}
+              /> : null
             }
           </View>
         </ScrollView>

@@ -28,15 +28,18 @@ class BasketFlatListItem extends Component {
   }
 
   increaseAmount = () => {
+    let positivePrice = this.state.price;
     let newAmount = this.state.amount++;
     this.setState({
       amount: newAmount + 1,
       finalPrice: this.state.amount*this.state.price
     });
-    //this.props.callBackPrice(this.state.price);
+    console.log(positivePrice);
+    this.props.callBackPrice(positivePrice);
   }
 
   decreaseAmount = () => {
+    let negativePrice = 0 - this.state.price;
     let newAmount = this.state.amount--;
     this.setState({
       amount: newAmount - 1,
@@ -45,7 +48,8 @@ class BasketFlatListItem extends Component {
     if (this.state.amount == 0) {
       this.props.removeItem(this.props.item.key);
     }
-    console.log(-this.state.price);
+    console.log(negativePrice);
+    this.props.callBackPrice(negativePrice);
     //console.log(this.state.amount);
   }
 
