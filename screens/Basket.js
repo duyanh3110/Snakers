@@ -99,7 +99,13 @@ export default class Basket extends Component {
                 }}
               />
 
-            : <Text>Cart is empty!</Text>
+            : <Image
+              style={{
+                width:screenWidth,
+                height:screenWidth*332/1080,
+                marginBottom: 15,
+              }}
+              source={require('../images/Basket/empty-basket.png')}/>
             }
 
           </View>

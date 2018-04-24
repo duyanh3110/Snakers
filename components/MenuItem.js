@@ -185,8 +185,8 @@ export default class MenuItem extends Component {
             <TouchableOpacity>
               <Image
                 style={{
-                  width: 90,
-                  height: 90,
+                  width: 120,
+                  height: 120,
                 }}
                 source={require('../images/Modal/add-cart.png')}
               />

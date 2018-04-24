@@ -42,7 +42,7 @@ class BasketFlatListItem extends Component {
       finalPrice: this.state.amount*this.state.price
     });
     if (this.state.amount == 0) {
-      this.props.removeItem(this.state.key);
+      this.props.removeItem(this.props.item.key);
     }
     //console.log(this.state.amount);
   }
