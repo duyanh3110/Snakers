@@ -150,14 +150,30 @@ export default class PaymentMethod extends Component {
           >
             {
               this.state.change ?
-              <TouchableOpacity
-                onPress = {this.CloseUserPaymentMethodView.bind(this)}
+              <ImageBackground
+                source={require('../../images/feedback/button-holder.png')}
+                style={{
+                  width: screenWidth,
+                  height: screenWidth * 114 / 1080,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginBottom: '8%',
+                  marginTop: '5%',
+                }}
               >
-                <Image
-                  style={{ width: screenWidth, height: screenWidth*104/977}}
-                  source={require('../../images/user/cancel-btn.png')}
-                />
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={this.CloseUserPaymentMethodView.bind(this)}
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image
+                    style={{width: screenWidth/2.1, height: (screenWidth * 103 / 457)/2.1}}
+                    source={require('../../images/user/cancel-btn.png')}
+                  />
+                </TouchableOpacity>
+              </ImageBackground>
               :null
             }
           </View>

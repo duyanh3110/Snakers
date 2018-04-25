@@ -12,6 +12,8 @@ import {
   ImageBackground,
 } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
+
 export default class OrderDetail extends Component {
   render() {
     let screenWidth = Dimensions.get('window').width;
@@ -352,7 +354,7 @@ export default class OrderDetail extends Component {
             marginBottom: '10%',
           }}
         >
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => Actions.feedback()}>
             <Image
               style={{width: screenWidth/2, height: (screenWidth*103/457)/2}}
               source={require('../../images/user/feedback-btn.png')}
