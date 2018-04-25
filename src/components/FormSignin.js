@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, KeyboardAvoidingView} from 'react-native';
 import * as firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -46,72 +46,65 @@ export default class FormSignin extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <KeyboardAwareScrollView>
-
-          <View style={{
-            marginTop: '60%'
-            }}>
-            <Logo />
-            <View style={{
-                marginTop: '40%'
-              }}>
-              <View style={styles.formInput}>
-                <Text style={styles.label}>Username or Email</Text>
-                <View style={styles.inputContainer}>
-                  <Image
-                    style={styles.logo}
-                    source={require('../images/user.png')}
-                  />
-                  <TextInput
-                    underlineColorAndroid='rgba(0,0,0,0)'
-                    placeholder="Email"
-                    placeholderTextColor='#c3c3c3'
-                    style={styles.input}
-                    onChangeText={email => this.setState({email})}
-                  />
-                </View>
-              </View>
-              <View style={styles.formInput}>
-                <Text style={styles.label}>Password</Text>
-                <View style={styles.inputContainer}>
-                  <Image
-                    style={styles.logo}
-                    source={require('../images/key.png')}
-                  />
-                  <TextInput
-                    underlineColorAndroid='rgba(0,0,0,0)'
-                    placeholder="Password"
-                    placeholderTextColor='#c3c3c3'
-                    secureTextEntry={true}
-                    style={styles.input}
-                    onChangeText={password => this.setState({password})}
-                  />
-                </View>
+        <View style={styles.container}>
+          <KeyboardAvoidingView behavior="padding" enabled>
+          <Logo/>
+          <View style={{marginTop: '30%'}}>
+            <View style={styles.formInput}>
+              <Text style={styles.label}>Username or Email</Text>
+              <View style={styles.inputContainer}>
+                <Image
+                  style={styles.logo}
+                  source={require('../images/user.png')}
+                />
+                <TextInput
+                  underlineColorAndroid='rgba(0,0,0,0)'
+                  placeholder="Email"
+                  placeholderTextColor='#c3c3c3'
+                  style={styles.input}
+                  onChangeText={email => this.setState({email})}
+                />
               </View>
             </View>
-
+            <View style={styles.formInput}>
+              <Text style={styles.label}>Password</Text>
+              <View style={styles.inputContainer}>
+                <Image
+                  style={styles.logo}
+                  source={require('../images/key.png')}
+                />
+                <TextInput
+                  underlineColorAndroid='rgba(0,0,0,0)'
+                  placeholder="Password"
+                  placeholderTextColor='#c3c3c3'
+                  secureTextEntry={true}
+                  style={styles.input}
+                  onChangeText={password => this.setState({password})}
+                />
+              </View>
+            </View>
           </View>
+          </KeyboardAvoidingView>
 
-        </KeyboardAwareScrollView>
-        <View style={styles.forgotPassContainer}>
-          <TouchableOpacity>
-            <Text style={styles.forgotPassText}>Forgot Password?</Text>
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity style={styles.button}
-          onPress={() => this.loginUser(this.state.email, this.state.password)}>
-          <Text style={styles.loginButton}>SIGN IN</Text>
-        </TouchableOpacity>
-        <View style={styles.suggestContainer}>
-          <View>
-            <Text style={styles.forgotPassText}>Not a member yet? </Text>
+          <View style={styles.forgotPassContainer}>
+            <TouchableOpacity>
+              <Text style={styles.forgotPassText}>Forgot Password?</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={this.signup}>
-            <Text style={styles.suggestSignup}>Sign up</Text>
+          <TouchableOpacity style={styles.button}
+            onPress={() => this.loginUser(this.state.email, this.state.password)}>
+            <Text style={styles.loginButton}>SIGN IN</Text>
           </TouchableOpacity>
+          <View style={styles.suggestContainer}>
+            <View>
+              <Text style={styles.forgotPassText}>Not a member yet? </Text>
+            </View>
+            <TouchableOpacity onPress={this.signup}>
+              <Text style={styles.suggestSignup}>Sign up</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+
     );
   }
 }
@@ -121,7 +114,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: "center"
   },
   label: {
