@@ -28,7 +28,8 @@ export default class PaymentMethod extends Component {
       status: 'user',
       enabel: require('../../images/menu/user-active.png'),
       email: "",
-      change: false
+      change: false,
+      paymentMethod: ''
     };
   }
 
@@ -147,14 +148,18 @@ export default class PaymentMethod extends Component {
               marginBottom: '10%',
             }}
           >
-            <TouchableOpacity
-              onPress = {this.CloseUserPaymentMethodView.bind(this)}
-            >
-              <Image
-                style={{ width: screenWidth, height: screenWidth*104/977}}
-                source={require('../../images/user/cancel-btn.png')}
-              />
-            </TouchableOpacity>
+            {
+              this.state.change ?
+              <TouchableOpacity
+                onPress = {this.CloseUserPaymentMethodView.bind(this)}
+              >
+                <Image
+                  style={{ width: screenWidth, height: screenWidth*104/977}}
+                  source={require('../../images/user/cancel-btn.png')}
+                />
+              </TouchableOpacity>
+              :null
+            }
           </View>
 
       </View>

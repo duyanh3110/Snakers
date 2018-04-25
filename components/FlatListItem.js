@@ -144,7 +144,7 @@ export default class FlatListItem extends Component {
                       width: 22,
                       height: 22,
                     }}
-                    source={require('../images/rating/checked.png')}
+                    source={require('../images/rating/checked1.png')}
                   />
                 }
 

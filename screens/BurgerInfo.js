@@ -12,6 +12,14 @@ import {
 } from 'react-native';
 
 export default class BurgerInfo extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      click: false
+    };
+  }
+
   render() {
     let screenWidth = Dimensions.get('window').width;
 
@@ -88,11 +96,29 @@ export default class BurgerInfo extends Component {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-          <TouchableOpacity>
-            <Image
-              style={{width: 100, height: 90}}
-              source={require('../images/burger-info/order-btn.png')}
-            />
+          <TouchableOpacity onPress={() => {
+              this.setState({
+                click: true
+              });
+              setTimeout(() => {
+                this.setState({
+                  click: false
+                });
+              }, 800)
+              console.log(this.state.click);
+            }}>
+            {
+              this.state.click == false?
+              <Image
+                style={{width: 100, height: 90}}
+                source={require('../images/burger-info/order-btn.png')}
+              />
+              :
+              <Image
+                style={{width: 100, height: 90}}
+                source={require('../images/rating/checked.png')}
+              />
+            }
           </TouchableOpacity>
         </View>
 

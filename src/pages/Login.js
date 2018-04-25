@@ -9,7 +9,6 @@ export default class Login extends React.Component {
     return (
       <ImageBackground source={require('../images/background.png')} style={styles.backgroundImage} >
         <View style={styles.container}>
-          <Logo />
           <FormSignin />
         </View>
       </ImageBackground>
@@ -23,7 +22,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 150,
     paddingBottom: 30,
   },
   backgroundImage: {

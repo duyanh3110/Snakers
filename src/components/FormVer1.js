@@ -2,9 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 import * as firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import Logo from './Logo';
 export default class FormSignin extends React.Component {
   constructor(props) {
     super(props);
@@ -47,53 +45,39 @@ export default class FormSignin extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView>
-
-          <View style={{
-            marginTop: '60%'
-            }}>
-            <Logo />
-            <View style={{
-                marginTop: '40%'
-              }}>
-              <View style={styles.formInput}>
-                <Text style={styles.label}>Username or Email</Text>
-                <View style={styles.inputContainer}>
-                  <Image
-                    style={styles.logo}
-                    source={require('../images/user.png')}
-                  />
-                  <TextInput
-                    underlineColorAndroid='rgba(0,0,0,0)'
-                    placeholder="Email"
-                    placeholderTextColor='#c3c3c3'
-                    style={styles.input}
-                    onChangeText={email => this.setState({email})}
-                  />
-                </View>
-              </View>
-              <View style={styles.formInput}>
-                <Text style={styles.label}>Password</Text>
-                <View style={styles.inputContainer}>
-                  <Image
-                    style={styles.logo}
-                    source={require('../images/key.png')}
-                  />
-                  <TextInput
-                    underlineColorAndroid='rgba(0,0,0,0)'
-                    placeholder="Password"
-                    placeholderTextColor='#c3c3c3'
-                    secureTextEntry={true}
-                    style={styles.input}
-                    onChangeText={password => this.setState({password})}
-                  />
-                </View>
-              </View>
-            </View>
-
+        <View style={styles.formInput}>
+          <Text style={styles.label}>Username or Email</Text>
+          <View style={styles.inputContainer}>
+            <Image
+              style={styles.logo}
+              source={require('../images/user.png')}
+            />
+            <TextInput
+              underlineColorAndroid='rgba(0,0,0,0)'
+              placeholder="Email"
+              placeholderTextColor='#c3c3c3'
+              style={styles.input}
+              onChangeText={email => this.setState({email})}
+            />
           </View>
-
-        </KeyboardAwareScrollView>
+        </View>
+        <View style={styles.formInput}>
+          <Text style={styles.label}>Password</Text>
+          <View style={styles.inputContainer}>
+            <Image
+              style={styles.logo}
+              source={require('../images/key.png')}
+            />
+            <TextInput
+              underlineColorAndroid='rgba(0,0,0,0)'
+              placeholder="Password"
+              placeholderTextColor='#c3c3c3'
+              secureTextEntry={true}
+              style={styles.input}
+              onChangeText={password => this.setState({password})}
+            />
+          </View>
+        </View>
         <View style={styles.forgotPassContainer}>
           <TouchableOpacity>
             <Text style={styles.forgotPassText}>Forgot Password?</Text>
@@ -118,10 +102,9 @@ export default class FormSignin extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     width: '100%',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: "center"
   },
   label: {
