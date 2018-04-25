@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import * as firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 
 import SaveMethod from './PaymentPage/save-method';
 import InternationCard from './PaymentPage/international-card';
@@ -436,7 +437,10 @@ export default class Payment extends Component {
             </Text>
           </View>
 
-          <TouchableOpacity onPress={() => this.refs.modal3.close()}>
+          <TouchableOpacity onPress={() => {
+              this.refs.modal3.close();
+              Actions.home()
+            }}>
             <Image
               style={{
                 width: screenWidth/2,
