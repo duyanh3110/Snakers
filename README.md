@@ -1,3 +1,1 @@
 "# Snakers"
-
-fuck yourself
